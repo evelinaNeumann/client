@@ -1,0 +1,32 @@
+.food {
+    background: linear-gradient(to bottom, rgb(120, 145, 116), rgb(255, 255, 255));
+  }
+  
+  .toys {
+    background: linear-gradient(to bottom, rgb(71, 96, 64), rgb(255, 255, 255));
+  }
+  
+  .housing {
+    background: linear-gradient(to bottom, rgb(237, 135, 51), rgb(255, 255, 255));
+  }
+  
+  .accessories {
+    background: linear-gradient(to bottom, rgb(181, 81, 57), rgb(255, 255, 255));
+  }
+  .grooming {
+    background: linear-gradient(to bottom, rgb(74, 112, 62), rgb(255, 255, 255));
+  }
+  
+  .beds {
+    background: linear-gradient(to bottom, rgb(234, 149, 79), rgb(255, 255, 255));
+  }
+
+  .carousel-image {
+    width: 350px;
+    height: 450px;
+    margin-right: 10px;
+  }
+  
+  .alice-carousel__stage-item {
+    padding: 0 !important;
+  }
