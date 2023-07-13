@@ -6,6 +6,7 @@ import io from "socket.io-client";
 
 import LandingPage from "./pages/LandingPage/LandingPage";
 import HomePage from "./pages/HomePage/HomePage";
+import PetDetailsPage from "./pages/PetsDetailsPage/PetsDetailsPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import SignupPage from "./pages/SignupPage/SignupPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
@@ -53,6 +54,7 @@ function App() {
             <Routes>
               <Route path="/" element={<LandingPage />} />
               <Route path="/home" element={<HomePage />} />
+              <Route path="/pets/:petId" component={PetDetailsPage} />
 
               <Route path="/guidelines" element={<GuidelinesPage />} />
               <Route path="/shop" element={<ShopHomePage />} />
