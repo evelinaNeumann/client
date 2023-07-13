@@ -1,9 +1,21 @@
-import React from 'react'
+import React from "react";
+import { FaUserCircle } from "react-icons/fa";
+import { MdOutlineShoppingCart } from "react-icons/md";
+import { Link } from "react-router-dom";
 
-const shopHeader = () => {
+function ShopHeader({ title }) {
   return (
-    <div className='bg-red-500'> shopHeader</div>
-  )
+    <div>
+      <h1 className="shadow h-20 flex justify-between items-center">
+        <div className="flex items-center">{title}</div>
+        <div className="flex items-center">
+          <FaUserCircle size={50} />
+          <Link to="/cart">  <MdOutlineShoppingCart size={50} style={{ marginRight: "16px" }} />
+</Link>
+        </div>
+      </h1>
+    </div>
+  );
 }
 
-export default shopHeader
+export default ShopHeader;
