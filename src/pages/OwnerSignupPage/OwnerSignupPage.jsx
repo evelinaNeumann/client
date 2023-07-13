@@ -8,10 +8,10 @@ function OwnerSignupPage() {
   const [ownerEmail, setOwnerEmail] = useState("");
   const [ownerPassword, setOwnerPassword] = useState("");
   const [ownerName, setOwnerName] = useState("");
-  const [ownerPhone, setOwnerPhone] = useState();
+  const [ownerPhone, setOwnerPhone] = useState(0);
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
-  const [zip, setZip] = useState();
+  const [zip, setZip] = useState(0);
   const [country, setCountry] = useState("");
   const [errorMessage, setErrorMessage] = useState(undefined);
 
