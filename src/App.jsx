@@ -59,7 +59,7 @@ function App() {
               <Route path="/guidelines" element={<GuidelinesPage />} />
               <Route path="/shop" element={<ShopHomePage />} />
               <Route path="/product/:productId" element={<ProductDetailsPage />} />
-              <Route path="/cart"element={<Elements stripe={stripePromise}><CartPage /> </Elements> } />
+              <Route path="/cart" element={<Elements stripe={stripePromise}><CartPage /> </Elements> } />
 
               <Route
                 path="/profile"
