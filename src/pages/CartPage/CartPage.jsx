@@ -12,9 +12,10 @@ import ShopHeader from "../../components/shopHeader/shopHeader";
 
 const stripePromise = loadStripe("pk_test_51NRxMIAJ0RHQyfziSQFiiswOORe2ztGLwkPBLRjk5JezRTwYfqJ4VQ5D3ZzF5qw58O4M2KflSYTmdelmUVJEsWSJ00sshA570x");
 
-const CheckoutForm = ({ totalPrice, clientSecret }) => {
+const CheckoutForm = ({ totalPrice }) => {
   const stripe = useStripe();
   const elements = useElements();
+  const clientSecret = process.env.REACT_APP_STRIPE_SECRET_KEY;
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -28,6 +29,7 @@ const CheckoutForm = ({ totalPrice, clientSecret }) => {
       const { id } = paymentMethod;
 
       try {
+        console.log(clientSecret)
         const response = await axios.post(
           "https://localhost:5005/payments/payment",
           {
