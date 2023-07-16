@@ -1,20 +1,71 @@
 import React, { useEffect, useContext, useState } from "react";
 import axios from "axios";
-import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import {
+  CardElement,
+  useStripe,
+  useElements,
+  Elements,
+} from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 import CartContext from "../../components/cartContext";
 import ShopHeader from "../../components/shopHeader/shopHeader";
-import CheckoutForm from "../Payment/checkoutForm";
+
+const stripePromise = loadStripe("pk_test_51NRxMIAJ0RHQyfziSQFiiswOORe2ztGLwkPBLRjk5JezRTwYfqJ4VQ5D3ZzF5qw58O4M2KflSYTmdelmUVJEsWSJ00sshA570x");
+
+const CheckoutForm = ({ totalPrice, clientSecret }) => {
+  const stripe = useStripe();
+  const elements = useElements();
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const { error, paymentMethod } = await stripe.createPaymentMethod({
+      type: "card",
+      card: elements.getElement(CardElement),
+    });
+
+    if (!error) {
+      const { id } = paymentMethod;
+
+      try {
+        const response = await axios.post(
+          "https://localhost:5005/payments/payment",
+          {
+            id,
+            amount: totalPrice * 100,
+            client_secret: clientSecret,
+          }
+        );
+
+        if (response.data.success) {
+          console.log("Payment successful");
+        }
+      } catch (error) {
+        console.log("Error", error);
+      }
+    } else {
+      console.log(error.message);
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <CardElement />
+      <button type="submit" disabled={!stripe}>
+        Pay
+      </button>
+    </form>
+  );
+};
 
 function CartPage() {
   const { cartItems, setCartItems } = useContext(CartContext);
-  const stripe = useStripe();
-  const elements = useElements();
   const [clientSecret, setClientSecret] = useState(null);
 
   useEffect(() => {
     const fetchCartItems = async () => {
       try {
-        const res = await fetch("http://localhost:5005/api/cart");
+        const res = await fetch("https://localhost:5005/api/cart");
         const data = await res.json();
         console.log("Received cart items:", data);
         setCartItems(data);
@@ -75,7 +126,7 @@ function CartPage() {
   const handleCheckout = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:5005/payments/payment/intent",
+        "https://localhost:5005/payments/payment/intent",
         {
           amount: totalPrice * 100,
         }
@@ -83,38 +134,6 @@ function CartPage() {
       setClientSecret(response.data.clientSecret);
     } catch (error) {
       console.log(error);
-    }
-  };
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
-      type: "card",
-      card: elements.getElement(CardElement),
-    });
-
-    if (!error) {
-      const { id } = paymentMethod;
-
-      try {
-        const response = await axios.post(
-          "http://localhost:5005/payments/payment",
-          {
-            id,
-            amount: totalPrice * 100,
-            client_secret: clientSecret,
-          }
-        );
-
-        if (response.data.success) {
-          console.log("Payment successful");
-        }
-      } catch (error) {
-        console.log("Error", error);
-      }
-    } else {
-      console.log(error.message);
     }
   };
 
@@ -152,12 +171,9 @@ function CartPage() {
             </div>
           ))}
           <p>Total Price: ${totalPrice}</p>
-          <form onSubmit={handleSubmit}>
-  <CheckoutForm totalPrice={totalPrice} clientSecret={clientSecret} />
-  <button type="submit" disabled={!stripe}>
-    Pay
-  </button>
-</form>
+          <Elements stripe={stripePromise}>
+            <CheckoutForm totalPrice={totalPrice} clientSecret={clientSecret} />
+          </Elements>
         </div>
       )}
     </div>
