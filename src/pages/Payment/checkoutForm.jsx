@@ -28,8 +28,8 @@ const CheckoutForm = () => {
   
         const response = await axios.post('http://localhost:5005/api/payment', {
           id,
-          amount: totalPrice * 100,
-          client_secret: clientSecret,
+         // amount: totalPrice * 100,
+          //client_secret: clientSecret,
         });
   
         if (response.data.success) {
