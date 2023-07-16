@@ -1,32 +1,125 @@
 .food {
-    background: linear-gradient(to bottom, rgb(120, 145, 116), rgb(255, 255, 255));
-  }
-  
-  .toys {
-    background: linear-gradient(to bottom, rgb(71, 96, 64), rgb(255, 255, 255));
-  }
-  
-  .housing {
-    background: linear-gradient(to bottom, rgb(237, 135, 51), rgb(255, 255, 255));
-  }
-  
-  .accessories {
-    background: linear-gradient(to bottom, rgb(181, 81, 57), rgb(255, 255, 255));
-  }
-  .grooming {
-    background: linear-gradient(to bottom, rgb(74, 112, 62), rgb(255, 255, 255));
-  }
-  
-  .beds {
-    background: linear-gradient(to bottom, rgb(234, 149, 79), rgb(255, 255, 255));
-  }
+  background: linear-gradient(to bottom, rgb(63, 98, 18), rgb(255, 255, 255));
+}
 
-  .carousel-image {
-    width: 350px;
-    height: 450px;
-    margin-right: 10px;
-  }
-  
-  .alice-carousel__stage-item {
-    padding: 0 !important;
-  }
+.toys {
+  background: linear-gradient(to bottom, rgb(114 , 155, 59), rgb(255, 255, 255));
+}
+
+.housing {
+  background: linear-gradient(to bottom, rgb(252, 204, 162), rgb(255, 255, 255));
+}
+
+.accessories {
+  background: linear-gradient(to bottom, rgb(232, 158, 94), rgb(255, 255, 255));
+}
+
+.grooming {
+  background: linear-gradient(to bottom, rgb(226, 119, 25), rgb(255, 255, 255));
+}
+
+.beds {
+  background: linear-gradient(to bottom, rgb(164, 195, 123), rgb(255, 255, 255));
+}
+
+.carousel-image {
+  width: 350px;
+  height: 650px;
+  margin-right: 10px;
+}
+
+.alice-carousel__stage-item {
+  padding: 0 !important;
+}
+
+.product-card {
+  background-color: white;
+  display: inline-block;
+  padding: 8px;
+  border: 1px solid black;
+  border-radius: 20px; 
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+  position: relative;
+  z-index: 1;
+}
+.product-card:hover {
+  transform: scale(1.05); /* Increase the scale value to adjust the zoom effect */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); /* Add a subtle box shadow */
+}
+.product-card::before {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border: 1px solid black;
+  border-radius: 20px; /* Adjust the border radius to match the product card */
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  z-index: -1;
+}
+
+.product-card:hover::before {
+  opacity: 1; /* Show the border on hover */
+}
+
+.product-card img {
+  display: block;
+  width: 350px;
+  height: 350px; /* Adjust the height as needed */
+  object-fit: contain; /* Ensures the image retains its aspect ratio */
+  transition: transform 0.3s ease-in-out;
+}
+
+.product-card:hover img {
+  transform: scale(1.1); /* Increase the scale value to adjust the zoom effect */
+}
+.custom-carousel-button {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  padding: 8px;
+  border: 2px solid black;
+  border-radius: 10px;
+  /* Add additional styling as needed */
+}
+
+.prev-button {
+  /* Add additional styling for previous button if needed */
+}
+
+.next-button {
+  /* Add additional styling for next button if needed */
+}
+.food .custom-carousel-button {
+  background-color: rgb(63, 98, 18);
+}
+
+.toys .custom-carousel-button {
+  background-color: rgb(114 , 155, 59);
+}
+
+.housing .custom-carousel-button {
+  background-color: rgb(252, 204, 162);
+}
+
+.accessories .custom-carousel-button {
+  background-color: rgb(232, 158, 94);
+}
+
+.grooming .custom-carousel-button {
+  background-color: rgb(226, 119, 25);
+}
+
+.beds .custom-carousel-button {
+  background-color: rgb(164, 195, 123);
+}
+
+
+
+
+
+
