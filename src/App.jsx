@@ -35,9 +35,9 @@ function App() {
   const [username, setUsername] = useState("");
   const [room, setRoom] = useState("");
   const [showChat, setShowChat] = useState(false);
-  const options = {
-    clientSecret: process.env.STRIPE_SECRET_KEY
-  };
+ // const options = {
+   // clientSecret: process.env.STRIPE_SECRET_KEY
+  //};
 
   const joinRoom = () => {
     console.log(username, room);

@@ -31,7 +31,8 @@ const CheckoutForm = ({ totalPrice }) => {
       try {
         console.log(clientSecret)
         const response = await axios.post(
-          "https://localhost:5005/payments/payment",
+          /*set HTTPS=true&&*/
+          "http://localhost:5005/payments/payment",
           {
             id,
             amount: totalPrice * 100,
@@ -67,7 +68,7 @@ function CartPage() {
   useEffect(() => {
     const fetchCartItems = async () => {
       try {
-        const res = await fetch("https://localhost:5005/api/cart");
+        const res = await fetch("http://localhost:5005/api/cart");
         const data = await res.json();
         console.log("Received cart items:", data);
         setCartItems(data);
@@ -128,17 +129,16 @@ function CartPage() {
   const handleCheckout = async () => {
     try {
       const response = await axios.post(
-        "https://localhost:5005/payments/payment/intent",
+        "http://localhost:5005/payments/intent",
         {
           amount: totalPrice * 100,
         }
       );
-      setClientSecret(response.data.clientSecret);
+      setClientSecret(response.data.paymentIntent);
     } catch (error) {
       console.log(error);
     }
   };
-
   return (
     <div>
       <ShopHeader title="Shop Page" />
@@ -174,8 +174,8 @@ function CartPage() {
           ))}
           <p>Total Price: ${totalPrice}</p>
           <Elements stripe={stripePromise}>
-            <CheckoutForm totalPrice={totalPrice} clientSecret={clientSecret} />
-          </Elements>
+      <CheckoutForm totalPrice={totalPrice} clientSecret={clientSecret} />
+    </Elements>
         </div>
       )}
     </div>

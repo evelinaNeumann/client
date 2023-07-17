@@ -19,8 +19,9 @@
     "tailwind-color-to-rgb": "^1.0.0",
     "tailwindcss": "^3.3.2"
   },
+ 
   "scripts": {
-    "start": "set HTTPS=true&&react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build && echo '/* /index.html 200' | cat >build/_redirects",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -49,3 +50,4 @@
     "@testing-library/user-event": "^14.4.3"
   }
 }
+ 
