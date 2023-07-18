@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
+import Logo from "../../images/Logo2.png";
+
 
 function Navbar() {
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
@@ -13,58 +15,86 @@ function Navbar() {
   };
 
   return (
-    <nav className="flex justify-end space-x-2 mt-2 mr-2">
-      <Link to="/home" className="px-4 py-2 rounded bg-lime-800 text-white hover:bg-lime-800">
-        Home
-      </Link>
+
+    <nav className="p-5 bg-white shadow md:flex md:items-center md:justify-between">
+      <div className="flex justify-between items-center ">
+        <span className="text-2xl font-[Poppins] cursor-pointer">
+        <img className="h-10 inline" src={Logo} alt="Friends Furr-ever" />
+        </span>
+
+        <span className="text-3xl cursor-pointer mx-2 md:hidden block">
+          <ion-icon nameName="menu" onclick="Menu(this)"></ion-icon>
+        </span>
+      </div>
 
       {isLoggedIn && (
         <>
-          <button onClick={logOutUser} className="px-4 py-2 rounded bg-lime-800 text-white hover:bg-lime-800">
-            Logout
-          </button>
+          <ul className="md:flex md:items-center z-[-1] md:z-auto md:static absolute bg-white w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-7 md:opacity-100 opacity-0 top-[-400px] transition-all ease-in duration-500">
+            <li className="mx-4 my-6 md:my-0">
+              <Link to="/home" className="text-xl hover:text-white duration-500 hover:bg-lime-800  hover:p-2 hover:rounded-lg">
+                Home
+              </Link>
+            </li>
 
-          <Link to="/profile" className="px-4 py-2 rounded bg-lime-800 text-white hover:bg-lime-800">
-            Profile
-          </Link>
+            <li className="mx-4 my-6 md:my-0">
+              <Link to="/guidelines" className="text-xl hover:text-white duration-500 hover:bg-lime-800  hover:p-2 hover:rounded-lg">
+                Guidelines
+              </Link>
+            </li>
 
-          <Link to="/guidelines" className="px-4 py-2 rounded bg-lime-800 text-white hover:bg-lime-800">
-            Guidelines
-          </Link>
-
-          <Link to="/shop" className="px-4 py-2 rounded bg-lime-800 text-white hover:bg-lime-800">
-            Shop
-          </Link>
-
-          <button onClick={handleChatClick} className="px-4 py-2 rounded bg-lime-800 text-white bg-lime-800">
-            Live Chat
-          </button>
-
-          <span>{user && user.name}</span>
+            <li className="mx-4 my-6 md:my-0">
+              <Link to="/shop" className="text-xl hover:text-white duration-500 hover:bg-lime-800  hover:p-2 hover:rounded-lg">
+                Shop
+              </Link>
+            </li>
+            <li className="mx-4 my-6 md:my-0">
+              <Link to="/profile" className="text-xl  hover:text-white duration-500 hover:bg-lime-800  hover:p-2 hover:rounded-lg">
+                Profile
+              </Link>
+            </li>
+            <li className="mx-4 my-6 md:my-0">
+              <button onClick={handleChatClick} className="text-xl  hover:text-white duration-500 hover:bg-lime-800  hover:p-2 hover:rounded-lg">
+                Live Chat
+              </button>
+            </li>
+            <li className="mx-4 my-6 md:my-0">
+              <button onClick={logOutUser} className="text-xl  hover:text-white duration-500 hover:bg-red-500  hover:p-2 hover:rounded-lg">
+                Logout
+              </button>
+            </li>
+            <span>{user && user.name}</span>
+          </ul>
         </>
       )}
 
       {!isLoggedIn && (
         <>
-          <Link to="/signup" className="px-4 py-2 rounded bg-lime-800 text-white hover:bg-lime-800">
-            Sign Up
-          </Link>
+          <ul className="md:flex md:items-center z-[-1] md:z-auto md:static absolute bg-white w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-7 md:opacity-100 opacity-0 top-[-400px] transition-all ease-in duration-500">
 
-          <Link to="/login" className="px-4 py-2 rounded bg-lime-800 text-white hover:bg-lime-800">
-            Login
-          </Link>
+            <li className="mx-4 my-6 md:my-0">
+              <Link to="/" className="text-xl hover:text-white duration-500 hover:bg-lime-800  hover:p-2 hover:rounded-lg">
+                Home
+              </Link>
+            </li>
 
-          <Link to="/guidelines" className="px-4 py-2 rounded bg-lime-800 text-white hover:bg-lime-800">
-            Guidelines
-          </Link>
+            <li className="mx-4 my-6 md:my-0">
+              <Link to="/guidelines" className="text-xl hover:text-white duration-500 hover:bg-lime-800  hover:p-2 hover:rounded-lg">
+                Guidelines
+              </Link>
+            </li>
 
-          <Link to="/shop" className="px-4 py-2 rounded bg-lime-800 text-white hover:bg-lime-800">
-            Shop
-          </Link>
+            <li className="mx-4 my-6 md:my-0">
+              <Link to="/" className="text-xl hover:text-white duration-500 hover:bg-lime-800  hover:p-2 hover:rounded-lg">
+                Login
+              </Link>
+            </li>
 
-          <button onClick={handleChatClick} className="px-4 py-2 rounded bg-lime-800 text-white hover:bg-lime-800">
-            Live Chat
-          </button>
+            <li className="mx-4 my-6 md:my-0">
+              <Link to="/shop" className="text-xl hover:text-white duration-500 hover:bg-lime-800  hover:p-2 hover:rounded-lg">
+                Shop
+              </Link>
+            </li>
+          </ul>
         </>
       )}
     </nav>
