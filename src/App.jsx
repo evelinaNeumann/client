@@ -1,6 +1,6 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import { useState } from "react"; 
+import { useState } from "react";
 
 import io from "socket.io-client";
 
@@ -17,6 +17,7 @@ import OwnerLoginPage from "./pages/OwnerLoginPage/OwnerLoginPage";
 import ProductDetailsPage from "./pages/ProductDetailsPage/ProductDetailsPage";
 import CartPage from "./pages/CartPage/CartPage";
 import CartContext from "./components/cartContext";
+import OwnerHomepage from "./pages/OwnerHomepage/OwnerHomepage";
 
 import Navbar from "./components/Navbar/Navbar";
 import IsPrivate from "./components/IsPrivate/IsPrivate";
@@ -28,9 +29,7 @@ import { loadStripe } from "@stripe/stripe-js";
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_API_KEY);
 
-
 const socket = io.connect("http://localhost:5005");
-
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -54,13 +53,23 @@ function App() {
             <Routes>
               <Route path="/" element={<LandingPage />} />
               <Route path="/home" element={<HomePage />} />
-              <Route path="/pets/:petId" component={PetDetailsPage} />
+              <Route path="/ownerhome" element={<OwnerHomepage />} />
 
+              <Route path="/pets/:petId" component={PetDetailsPage} />
               <Route path="/guidelines" element={<GuidelinesPage />} />
               <Route path="/shop" element={<ShopHomePage />} />
-              <Route path="/product/:productId" element={<ProductDetailsPage />} />
-              <Route path="/cart"element={<Elements stripe={stripePromise}><CartPage /> </Elements> } />
-
+              <Route
+                path="/product/:productId"
+                element={<ProductDetailsPage />}
+              />
+              <Route
+                path="/cart"
+                element={
+                  <Elements stripe={stripePromise}>
+                    <CartPage />{" "}
+                  </Elements>
+                }
+              />
               <Route
                 path="/profile"
                 element={
@@ -69,7 +78,6 @@ function App() {
                   </IsPrivate>
                 }
               />
-
               <Route
                 path="/signup"
                 element={
@@ -78,7 +86,6 @@ function App() {
                   </IsAnon>
                 }
               />
-
               <Route
                 path="/ownersignup"
                 element={
@@ -87,7 +94,6 @@ function App() {
                   </IsAnon>
                 }
               />
-
               <Route
                 path="/ownerlogin"
                 element={
@@ -96,7 +102,6 @@ function App() {
                   </IsAnon>
                 }
               />
-
               <Route
                 path="/login"
                 element={
