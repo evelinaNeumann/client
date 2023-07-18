@@ -27,7 +27,9 @@ import LiveChat from "./components/LiveChat/LiveChat";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 
-const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_API_KEY);
+
+const stripePromise = loadStripe('pk_test_51NRxMIAJ0RHQyfziSQFiiswOORe2ztGLwkPBLRjk5JezRTwYfqJ4VQ5D3ZzF5qw58O4M2KflSYTmdelmUVJEsWSJ00sshA570x');
+
 
 const socket = io.connect("http://localhost:5005");
 
@@ -36,6 +38,9 @@ function App() {
   const [username, setUsername] = useState("");
   const [room, setRoom] = useState("");
   const [showChat, setShowChat] = useState(false);
+ // const options = {
+   // clientSecret: process.env.STRIPE_SECRET_KEY
+  //};
 
   const joinRoom = () => {
     console.log(username, room);
