@@ -1,15 +1,69 @@
-import React, { useEffect, useContext } from "react";
-import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import React, { useEffect, useContext, useState } from "react";
+import axios from "axios";
+import {
+  CardElement,
+  useStripe,
+  useElements,
+  Elements,
+} from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import CartContext from "../../components/cartContext";
 import ShopHeader from "../../components/shopHeader/shopHeader";
 
-function CartPage() {
-  const { cartItems, setCartItems } = useContext(CartContext);
+const stripePromise = loadStripe("pk_test_51NRxMIAJ0RHQyfziSQFiiswOORe2ztGLwkPBLRjk5JezRTwYfqJ4VQ5D3ZzF5qw58O4M2KflSYTmdelmUVJEsWSJ00sshA570x");
+
+const CheckoutForm = ({ totalPrice }) => {
   const stripe = useStripe();
   const elements = useElements();
-  const stripePromise = loadStripe("pk_test_51NRxMIAJ0RHQyfziSQFiiswOORe2ztGLwkPBLRjk5JezRTwYfqJ4VQ5D3ZzF5qw58O4M2KflSYTmdelmUVJEsWSJ00sshA570x");
-  console.log(process.env.REACT_APP_STRIPE_API_KEY);
+  const clientSecret = process.env.REACT_APP_STRIPE_SECRET_KEY;
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const { error, paymentMethod } = await stripe.createPaymentMethod({
+      type: "card",
+      card: elements.getElement(CardElement),
+    });
+
+    if (!error) {
+      const { id } = paymentMethod;
+
+      try {
+        console.log(clientSecret)
+        const response = await axios.post(
+          /*set HTTPS=true&&*/
+          "http://localhost:5005/payments/payment",
+          {
+            id,
+            amount: totalPrice * 100,
+            client_secret: clientSecret,
+          }
+        );
+
+        if (response.data.success) {
+          console.log("Payment successful");
+        }
+      } catch (error) {
+        console.log("Error", error);
+      }
+    } else {
+      console.log(error.message);
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <CardElement />
+      <button type="submit" disabled={!stripe}>
+        Pay
+      </button>
+    </form>
+  );
+};
+
+function CartPage() {
+  const { cartItems, setCartItems } = useContext(CartContext);
+  const [clientSecret, setClientSecret] = useState(null);
 
   useEffect(() => {
     const fetchCartItems = async () => {
@@ -34,7 +88,9 @@ function CartPage() {
 
   const handleRemoveFromCart = async (productId) => {
     try {
-      const itemIndex = cartItems.findIndex((item) => item.productId === productId);
+      const itemIndex = cartItems.findIndex(
+        (item) => item.productId === productId
+      );
       if (itemIndex !== -1) {
         const updatedCartItems = [...cartItems];
         if (updatedCartItems[itemIndex].quantity > 1) {
@@ -54,7 +110,9 @@ function CartPage() {
     const quantity = parseInt(event.target.value);
     if (!isNaN(quantity) && quantity >= 0) {
       const updatedCartItems = [...cartItems];
-      const itemIndex = updatedCartItems.findIndex((item) => item.productId === productId);
+      const itemIndex = updatedCartItems.findIndex(
+        (item) => item.productId === productId
+      );
       if (itemIndex !== -1) {
         updatedCartItems[itemIndex].quantity = quantity;
         setCartItems(updatedCartItems);
@@ -68,40 +126,19 @@ function CartPage() {
     0
   );
 
-  const handleCheckout = async (event) => {
-    event.preventDefault();
-    if (!stripe || !elements) {
-      return;
-    }
-
-    const cardElement = elements.getElement(CardElement);
-
-    const { error, token } = await stripe.createToken(cardElement);
-
-    if (error) {
-      console.error("Error creating token:", error);
-      return;
-    }
-
+  const handleCheckout = async () => {
     try {
-      const res = await fetch("http://localhost:5005/api/checkout", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ token: token.id, amount: totalPrice }),
-      });
-
-      if (res.ok) {
-        console.log("Payment successful");
-      } else {
-        console.error("Payment failed:", res.statusText);
-      }
+      const response = await axios.post(
+        "http://localhost:5005/payments/intent",
+        {
+          amount: totalPrice * 100,
+        }
+      );
+      setClientSecret(response.data.paymentIntent);
     } catch (error) {
-      console.error("Error processing payment:", error);
+      console.log(error);
     }
   };
-
   return (
     <div>
       <ShopHeader title="Shop Page" />
@@ -122,7 +159,9 @@ function CartPage() {
                   type="number"
                   min="0"
                   value={item.quantity}
-                  onChange={(event) => handleQuantityChange(item.productId, event)}
+                  onChange={(event) =>
+                    handleQuantityChange(item.productId, event)
+                  }
                 />
               </label>
               <button
@@ -134,15 +173,9 @@ function CartPage() {
             </div>
           ))}
           <p>Total Price: ${totalPrice}</p>
-          <form onSubmit={handleCheckout}>
-            <button
-              className="bg-lime-800 hover:bg-lime-800 text-white font-bold py-2 px-4 rounded"
-              type="submit"
-              disabled={!stripe}
-            >
-              Checkout
-            </button>
-          </form>
+          <Elements stripe={stripePromise}>
+      <CheckoutForm totalPrice={totalPrice} clientSecret={clientSecret} />
+    </Elements>
         </div>
       )}
     </div>
