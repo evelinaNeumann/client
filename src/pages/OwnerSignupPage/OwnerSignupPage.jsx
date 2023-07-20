@@ -2,16 +2,17 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import authService from "../../services/auth.service";
 import PetImg2 from "../../images/petsimage.png"
+import "./OwnerSignupPage.css";
 // import axios from "axios";
 
 function OwnerSignupPage() {
   const [ownerEmail, setOwnerEmail] = useState("");
   const [ownerPassword, setOwnerPassword] = useState("");
   const [ownerName, setOwnerName] = useState("");
-  const [ownerPhone, setOwnerPhone] = useState(0);
+  const [ownerPhone, setOwnerPhone] = useState();
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
-  const [zip, setZip] = useState(0);
+  const [zip, setZip] = useState();
   const [country, setCountry] = useState("");
   const [errorMessage, setErrorMessage] = useState(undefined);
 
@@ -76,7 +77,7 @@ function OwnerSignupPage() {
 
                 <div className="grid grid-cols-2 gap-5">
                   <input className="border border-gray-400 py-1 px-2" type="text" name="ownerName" value={ownerName} onChange={handleOwnerName} placeholder="Enter your name" />
-                  <input className="border border-gray-400 py-1 px-2" type="number" name="ownerPhone" value={ownerPhone} onChange={handleOwnerPhone} placeholder="Enter your phone" />
+                  <input className="border border-gray-400 py-1 px-2 no-spinner" type="number" name="ownerPhone" value={ownerPhone} onChange={handleOwnerPhone} placeholder="Enter your phone" />
                 </div>
 
                 <div className="mt-5"></div>
@@ -89,7 +90,7 @@ function OwnerSignupPage() {
                 <div className="mt-5"></div>
 
                 <div className="grid grid-cols-2 gap-5">
-                  <input className="border border-gray-400 py-1 px-2" type="number" name="zip" value={zip} onChange={handleZip} placeholder="Zip" />
+                <input className="border border-gray-400 py-1 px-2 no-spinner" type="number" name="zip" value={zip} onChange={handleZip} placeholder="Zip"/>
                   <input className="border border-gray-400 py-1 px-2" type="text" name="country" value={country} onChange={handleCountry} placeholder="Country" />
                 </div>
 
