@@ -18,6 +18,7 @@ import ProductDetailsPage from "./pages/ProductDetailsPage/ProductDetailsPage";
 import CartPage from "./pages/CartPage/CartPage";
 import CartContext from "./components/cartContext";
 import OwnerHomepage from "./pages/OwnerHomepage/OwnerHomepage";
+import TestPostRequest from "./pages/TestPage";
 
 import Navbar from "./components/Navbar/Navbar";
 import IsPrivate from "./components/IsPrivate/IsPrivate";
@@ -80,6 +81,14 @@ function App() {
                 element={
                   <IsPrivate>
                     <ProfilePage />
+                  </IsPrivate>
+                }
+              />
+              <Route
+                path="/test"
+                element={
+                  <IsPrivate>
+                    <TestPostRequest />
                   </IsPrivate>
                 }
               />
