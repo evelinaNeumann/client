@@ -48,7 +48,7 @@ function GuidelinesPage() {
             <h3 className="flex text-3xl py-4">Time and Attention</h3>
             <div className="flex flex-col md:flex-row items-center py-4 space-between">
               <img src={catGrooming} alt="List for guidelines" className="w-3/5 h-auto md:w-1/4 md:w-1/3 lg:w-1/4 md:pl-8 mt-4 md:mt-0" />
-              <ul className="text-2xl text-justify text-zinc-400 pl-8">
+              <ul className="text-2xl text-justify text-zinc-400 lg:pl-8">
                 <li><span className="underline underline-offset-4 text-black">Dogs:</span> Dogs thrive on human interaction and companionship. They require regular feeding, exercise, grooming, and training. If you can dedicate time to training and socializing a dog, they can be incredibly loyal and loving companions.</li>
                 <li><span className="underline underline-offset-4 text-black">Cats:</span> Cats are generally more self-sufficient and can adapt well to a more independent lifestyle. They still require feeding, playtime, and affection, but they are often more low-maintenance compared to dogs.</li>
                 <li><span className="underline underline-offset-4 text-black">Smaller Animals:</span> Smaller animals usually require less time and attention compared to dogs and cats. However, they still need proper care, including regular feeding, cleaning their habitats, and providing social interaction.</li>
