@@ -19,6 +19,7 @@ import CartPage from "./pages/CartPage/CartPage";
 import CartContext from "./components/cartContext";
 import OwnerHomepage from "./pages/OwnerHomepage/OwnerHomepage";
 
+
 import Navbar from "./components/Navbar/Navbar";
 import IsPrivate from "./components/IsPrivate/IsPrivate";
 import IsAnon from "./components/IsAnon/IsAnon";
@@ -83,6 +84,7 @@ function App() {
                   </IsPrivate>
                 }
               />
+            
               <Route
                 path="/signup"
                 element={
