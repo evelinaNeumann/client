@@ -4,26 +4,45 @@ import { AuthContext } from "../../context/auth.context";
 import PetsPage from "../PetsPage/PetsPage";
 import LandingPage from "../LandingPage/LandingPage"
 import AliceCarousel from "react-alice-carousel";
+import { Image } from "cloudinary-react";
+import axios from "axios";
 import "react-alice-carousel/lib/scss/alice-carousel.scss";
 import "./HomePage.css";
 
 function HomePage() {
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
   const [pets, setPets] = useState([]);
+  const [publicId, setPublicId] = useState("");
 
   useEffect(() => {
-    if (user && user.preference) {
-      if (user.preference === "Dogs") {
-        getDogs();
-      } else if (user.preference === "Cats") {
-        getCats();
-      } else if (user.preference === "Small Pets") {
-        getSmallPets();
-      } else {
-        getAllPets();
+    const fetchData = async () => {
+      if (user && user.preference) {
+        let apiUrl = "";
+  
+        if (user.preference === "Dogs") {
+          apiUrl = "http://localhost:5005/pet/dogs";
+        } else if (user.preference === "Cats") {
+          apiUrl = "http://localhost:5005/pet/cats";
+        } else if (user.preference === "Small Pets") {
+          apiUrl = "http://localhost:5005/pet/small_animals";
+        } else {
+          apiUrl = "http://localhost:5005/pet/pets";
+        }
+  
+        const res = await fetch(apiUrl);
+        const finalRes = await res.json();
+        setPets(finalRes);
+  
+        // Get the public ID of the first pet in the fetched data
+        if (finalRes.length > 0) {
+          setPublicId(finalRes[0].image);
+        }
       }
-    }
+    };
+  
+    fetchData();
   }, [user]);
+  
 
   const getDogs = async () => {
     const res = await fetch("http://localhost:5005/pet/dogs");
@@ -51,7 +70,11 @@ function HomePage() {
       <div key={pet.id} className="carousel-slide">
         <div className="pet-card">
           <div className="pet-image">
-            <img src={pet.image} alt={pet.name} />
+            <Image
+              cloudName="dnstseshn"
+              publicId={pet.image} // Use the correct property here
+            />
+            {/* <img src={pet.image} alt={pet.name} /> */}
           </div>
         </div>
         <div className="pet-details">
@@ -67,6 +90,7 @@ function HomePage() {
       </div>
     ));
   };
+  
   
   
 
