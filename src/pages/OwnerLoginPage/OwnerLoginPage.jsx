@@ -35,7 +35,7 @@ function OwnerLoginPage() {
         // and at last navigate to the home page
         storeToken(response.data.authToken);
         authenticateUser();
-        navigate("/");
+        navigate("/ownerhome");
       })
       .catch((error) => {
         // If the request resolves with an error, set the error message in the state
