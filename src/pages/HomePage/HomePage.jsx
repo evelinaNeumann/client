@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
 import PetsPage from "../PetsPage/PetsPage";
-import LoginPage from "../LoginPage/LoginPage";
+import LandingPage from "../LandingPage/LandingPage"
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/scss/alice-carousel.scss";
 import "./HomePage.css";
@@ -26,22 +26,22 @@ function HomePage() {
   }, [user]);
 
   const getDogs = async () => {
-    const res = await fetch("http://localhost:5005/api/dogs");
+    const res = await fetch("http://localhost:5005/pet/dogs");
     const finalRes = await res.json();
     setPets(finalRes);
   };
   const getCats = async () => {
-    const res = await fetch("http://localhost:5005/api/cats");
+    const res = await fetch("http://localhost:5005/pet/cats");
     const finalRes = await res.json();
     setPets(finalRes);
   };
   const getSmallPets = async () => {
-    const res = await fetch("http://localhost:5005/api/small_pets");
+    const res = await fetch("http://localhost:5005/pet/small_animals");
     const finalRes = await res.json();
     setPets(finalRes);
   };
   const getAllPets = async () => {
-    const res = await fetch("http://localhost:5005/api/all_pets");
+    const res = await fetch("http://localhost:5005/pet/pets");
     const finalRes = await res.json();
     setPets(finalRes);
   };
@@ -102,7 +102,7 @@ function HomePage() {
             <p>No pets available.</p>
           )
         ) : (
-          <LoginPage />
+          <LandingPage />
         )}
       </div>
     </div>
