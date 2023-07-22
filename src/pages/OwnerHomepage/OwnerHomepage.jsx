@@ -5,13 +5,17 @@ import { Image } from "cloudinary-react";
 
 function OwnerHomepage() {
   const [imageSelected, setSelectedImage] = useState("");
-  const [publicId, setPublicId] = useState(""); // Add state to store the publicId
+  const [publicId, setPublicId] = useState("");
   const [breed, setBreed] = useState("");
   const [name, setName] = useState("");
   const [age, setAge] = useState(0);
   const [weight, setWeight] = useState(0);
   const [description, setDescription] = useState("");
-  const [postedBy, setPostedBy] = useState("");
+  // const [postedBy, setPostedBy] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [type, setType] = useState(""); // Add state for type
+  const [temper, setTemper] = useState(""); // Add state for temper
+  const [specialNeeds, setSpecialNeeds] = useState(false); // Initialize as false
 
   const uploadImage = () => {
     const formData = new FormData();
@@ -22,7 +26,7 @@ function OwnerHomepage() {
       .post("https://api.cloudinary.com/v1_1/dnstseshn/image/upload", formData)
       .then((response) => {
         console.log(response);
-        setPublicId(response.data.public_id); // Store the publicId from the response
+        setPublicId(response.data.public_id);
       })
       .catch((error) => {
         console.error(error);
@@ -30,20 +34,38 @@ function OwnerHomepage() {
   };
 
   const handleSubmit = () => {
+    // Get the JWT token from wherever you have stored it (e.g., localStorage)
+    const authToken = localStorage.getItem("authToken");
+
+    // Check if the token is available
+    if (!authToken) {
+      console.error("No authentication token found.");
+      return;
+    }
+
     const formData = {
-      breed,
       name,
+      category: selectedCategory,
+      type,
       age,
-      weight,
-      description,
+      temper,
+      special_needs: !!specialNeeds, // Convert to boolean
       image: publicId,
-      postedBy,
+      // postedBy,
+    };
+
+    // Include the JWT token in the request headers
+    const config = {
+      headers: {
+        Authorization: `Bearer ${authToken}`,
+      },
     };
 
     axios
-      .post("http://localhost:5005/api/petprofile", formData) // Replace "/api/submitProfile" with the appropriate backend endpoint
+      .post("http://localhost:5005/pet/petprofile", formData, config)
       .then((response) => {
-        console.log(response);
+        const data = response.data;
+        console.log(data);
         // Add any additional logic for success
       })
       .catch((error) => {
@@ -65,18 +87,10 @@ function OwnerHomepage() {
         <Image
           style={{ width: 200 }}
           cloudName="dnstseshn"
-          publicId={publicId} // Use the stored publicId in the Image component
+          publicId={publicId}
         />
       )}
-      <div>
-        <label>Breed:</label>
-        <input
-          type="text"
-          placeholder="Breed"
-          value={breed}
-          onChange={(event) => setBreed(event.target.value)}
-        />
-      </div>
+
       <div>
         <label>Name:</label>
         <input
@@ -84,6 +98,27 @@ function OwnerHomepage() {
           placeholder="Name"
           value={name}
           onChange={(event) => setName(event.target.value)}
+        />
+      </div>
+      <div>
+        <label>Category:</label>
+        <select
+          value={selectedCategory}
+          onChange={(event) => setSelectedCategory(event.target.value)}
+        >
+          <option value="">Select category</option>
+          <option value="dog">Dog</option>
+          <option value="cat">Cat</option>
+          <option value="small_animal">Small Animal</option>
+        </select>
+      </div>
+      <div>
+        <label>Type:</label>
+        <input
+          type="text"
+          placeholder="Type"
+          value={type}
+          onChange={(event) => setType(event.target.value)}
         />
       </div>
       <div>
@@ -96,7 +131,7 @@ function OwnerHomepage() {
         />
       </div>
       <div>
-        <label>Weight:</label>
+        {/* <label>Weight:</label>
         <input
           type="number"
           placeholder="Weight"
@@ -121,10 +156,25 @@ function OwnerHomepage() {
           onChange={(event) => setPostedBy(event.target.value)}
         />
       </div>
-      <div>
+      <div> */}
         {/* Other form fields */}
-        <button onClick={handleSubmit}>Submit</button>
+        <label>Temper:</label>
+        <input
+          type="text"
+          placeholder="Temper"
+          value={temper}
+          onChange={(event) => setTemper(event.target.value)}
+        />
       </div>
+      <div>
+        <label>Special Needs:</label>
+        <input
+          type="checkbox"
+          checked={specialNeeds}
+          onChange={(event) => setSpecialNeeds(event.target.checked)}
+        />
+      </div>
+      <button onClick={handleSubmit}>Submit</button>
     </div>
   );
 }

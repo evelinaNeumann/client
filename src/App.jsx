@@ -19,6 +19,7 @@ import CartPage from "./pages/CartPage/CartPage";
 import CartContext from "./components/cartContext";
 import OwnerHomepage from "./pages/OwnerHomepage/OwnerHomepage";
 
+
 import Navbar from "./components/Navbar/Navbar";
 import IsPrivate from "./components/IsPrivate/IsPrivate";
 import IsAnon from "./components/IsAnon/IsAnon";
@@ -83,6 +84,7 @@ function App() {
                   </IsPrivate>
                 }
               />
+            
               <Route
                 path="/signup"
                 element={
@@ -117,28 +119,6 @@ function App() {
               />
             </Routes>
 
-            <div className="joinChatContainer">
-              <h3 className="joinChatHeader">Join a chat</h3>
-              <input
-                type="text"
-                placeholder="Name..."
-                onChange={(event) => {
-                  setUsername(event.target.value);
-                }}
-                className="joinChatInput"
-              />
-              <input
-                type="text"
-                placeholder="Room ID..."
-                onChange={(event) => {
-                  setRoom(event.target.value);
-                }}
-                className="joinChatInput"
-              />
-              <button onClick={joinRoom} className="joinChatButton">
-                Join a room
-              </button>
-            </div>
           </>
         ) : (
           <LiveChat socket={socket} username={username} room={room} />

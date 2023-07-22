@@ -1,4 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../context/auth.context";
+import { useState } from "react";
 import catDoodle from "../../images/cat-doodle.jpg";
 import dogDoodle from "../../images/dog-doodle.jpg";
 import dogDoodle1 from "../../images/dog-doodle-1.jpg";
@@ -9,54 +12,60 @@ import catThinking from "../../images/cat-thinking.png";
 import paws from "../../images/paws.png";
 
 function LandingPage(props) {
+  const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
   const navigate = useNavigate();
   return (
     <div>
-      <div className="text-5xl px-8 py-8 font-bold text-lime-800">
-        <h1>Welcome! Sign up or log in to start the process</h1>
-      </div>
-      <div className="px-12 lg:flex lg:p-10">
-        <div className="lg:w-1/2">
-          <div className="sm:flex sm:flex-col sm:items-center sm:p-4">
-            <div className="w-40 lg:w-30">
-              <img src={catDoodle} alt="Cat" className="w-full" />
-            </div>
-            <p className="text-2xl py-8">
-              Have you <span className="font-bold">found a pet</span> and are
-              now looking for a shelter? <br />
-              <Link
-                className="font-bold hover:text-orange-500"
-                to="/ownersignup"
-              >
-                Sign Up as an owner
-              </Link>{" "}
-              or{" "}
-              <Link className="font-bold hover:text-lime-800" to="/ownerlogin">
-                Login
-              </Link>
-            </p>
+      {!isLoggedIn && (
+        <>
+          <div className="text-5xl px-8 py-8 font-bold text-lime-800">
+            <h1>Welcome! Sign up or log in to start the process</h1>
           </div>
-        </div>
+          <div className="px-12 lg:flex lg:p-10">
+            <div className="lg:w-1/2">
+              <div className="sm:flex sm:flex-col sm:items-center sm:p-4">
+                <div className="w-40 lg:w-30">
+                  <img src={catDoodle} alt="Cat" className="w-full" />
+                </div>
+                <p className="text-2xl py-8">
+                  Have you <span className="font-bold">found a pet</span> and are
+                  now looking for a shelter? <br />
+                  <Link
+                    className="font-bold hover:text-orange-500"
+                    to="/ownersignup"
+                  >
+                    Sign Up as an owner
+                  </Link>{" "}
+                  or{" "}
+                  <Link className="font-bold hover:text-lime-800" to="/ownerlogin">
+                    Login
+                  </Link>
+                </p>
+              </div>
+            </div>
 
-        <div className="lg:w-1/2">
-          <div className="sm:flex sm:flex-col sm:items-center sm:p-4">
-            <div className="w-40 lg:w-30">
-              <img src={dogDoodle} alt="Dog" className="w-full" />
+            <div className="lg:w-1/2">
+              <div className="sm:flex sm:flex-col sm:items-center sm:p-4">
+                <div className="w-40 lg:w-30">
+                  <img src={dogDoodle} alt="Dog" className="w-full" />
+                </div>
+                <p className="text-2xl py-8">
+                  Or are you <span className="font-bold">looking for a pet</span> to
+                  give it a deserving home? <br />
+                  <Link className="font-bold hover:text-orange-500" to="/signup">
+                    Sign Up
+                  </Link>{" "}
+                  or{" "}
+                  <Link className="font-bold hover:text-lime-800" to="/login">
+                    Login
+                  </Link>
+                </p>
+              </div>
             </div>
-            <p className="text-2xl py-8">
-              Or are you <span className="font-bold">looking for a pet</span> to
-              give it a deserving home? <br />
-              <Link className="font-bold hover:text-orange-500" to="/signup">
-                Sign Up
-              </Link>{" "}
-              or{" "}
-              <Link className="font-bold hover:text-lime-800" to="/login">
-                Login
-              </Link>
-            </p>
           </div>
-        </div>
-      </div>
+        </>
+      )}
+
 
       <div>
         <div>
