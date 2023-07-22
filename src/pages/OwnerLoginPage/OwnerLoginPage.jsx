@@ -34,7 +34,7 @@ function OwnerLoginPage() {
         // and at last navigate to the home page
         storeToken(response.data.authToken);
         authenticateUser();
-        navigate("/");
+        navigate("/ownerhome");
       })
       .catch((error) => {
         // If the request resolves with an error, set the error message in the state
@@ -49,7 +49,12 @@ function OwnerLoginPage() {
 
       <form onSubmit={handleOwnerLoginSubmit}>
         <label>Email:</label>
-        <input type="email" name="ownerEmail" value={ownerEmail} onChange={handleOwnerEmail} />
+        <input
+          type="email"
+          name="ownerEmail"
+          value={ownerEmail}
+          onChange={handleOwnerEmail}
+        />
 
         <label>Password:</label>
         <input

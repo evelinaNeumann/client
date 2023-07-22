@@ -11,6 +11,7 @@ function OwnerHomepage() {
   const [age, setAge] = useState(0);
   const [weight, setWeight] = useState(0);
   const [description, setDescription] = useState("");
+  const [postedBy, setPostedBy] = useState("");
 
   const uploadImage = () => {
     const formData = new FormData();
@@ -36,6 +37,7 @@ function OwnerHomepage() {
       weight,
       description,
       image: publicId,
+      postedBy,
     };
 
     axios
@@ -108,6 +110,15 @@ function OwnerHomepage() {
           placeholder="Description"
           value={description}
           onChange={(event) => setDescription(event.target.value)}
+        />
+      </div>
+      <div>
+        <label>Posted By:</label>
+        <input
+          type="text"
+          placeholder="Your Name"
+          value={postedBy}
+          onChange={(event) => setPostedBy(event.target.value)}
         />
       </div>
       <div>
