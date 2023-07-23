@@ -4,18 +4,15 @@ import {
   CardElement,
   useStripe,
   useElements,
-  Elements,
+  
 } from "@stripe/react-stripe-js";
-import { loadStripe } from "@stripe/stripe-js";
 import CartContext from "../../components/cartContext";
-import ShopHeader from "../../components/shopHeader/shopHeader";
+
 import "./CartPage.css";
 import PaymentFormModal from "../../components/PaymentFormModal/PaymentFormModal";
-import CheckoutForm from "../../components/CheckoutForm/CheckoutFrom";
 
-const stripePromise = loadStripe(
-  "pk_test_51NRxMIAJ0RHQyfziSQFiiswOORe2ztGLwkPBLRjk5JezRTwYfqJ4VQ5D3ZzF5qw58O4M2KflSYTmdelmUVJEsWSJ00sshA570x"
-);
+
+
 
 function CartPage() {
   const { cartItems, setCartItems } = useContext(CartContext);
@@ -24,6 +21,7 @@ function CartPage() {
 
   const stripe = useStripe();
   const elements = useElements();
+  
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -58,6 +56,7 @@ function CartPage() {
       console.log(error.message);
     }
   };
+
 
   useEffect(() => {
     const fetchCartItems = async () => {
@@ -141,21 +140,24 @@ function CartPage() {
     }
   };
 
+
+
   return (
-    <div className="cart-page">
-      <ShopHeader title="Shop Page" />
-      <h2>Cart</h2>
+    <div className="cart-page ui-serif-font">
+      <h2>Welcome to your Cart</h2>
       {cartItems.length === 0 ? (
         <p className="empty-cart">Your cart is empty.</p>
       ) : (
         <div>
+          {/* Move the cartItems.map block inside the conditional rendering */}
           {cartItems.map((item) => (
             <div className="cart-item" key={item._id}>
+              {/* Use the 'image' property from each cart item 
               <img
                 src={item.image}
                 alt={item.name}
                 className="cart-item-image"
-              />
+              />*/}
               <div className="cart-item-details">
                 <h3>{item.name}</h3>
                 <p>Category: {item.category}</p>
@@ -177,10 +179,14 @@ function CartPage() {
                   onClick={() => handleRemoveFromCart(item.productId)}
                 >
                   Remove from Cart
+                  
                 </button>
+                
               </div>
+              
             </div>
           ))}
+          <p className="total-price">Total Price: ${totalPrice}</p>
           <button className="pay-now-button" onClick={handlePayNowClicked}>
             Pay Now
           </button>
@@ -192,12 +198,6 @@ function CartPage() {
           )}
         </div>
       )}
-      {/* Render the CheckoutForm component */}
-      <CheckoutForm
-        totalPrice={totalPrice}
-        handleCheckout={handleCheckout}
-        clientSecret={clientSecret}
-      />
     </div>
   );
 }

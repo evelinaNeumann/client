@@ -52,7 +52,7 @@
 
 .cart-item button {
   margin-top: 10px;
-  background-color: #32CD32;
+  background-color:rgb(226, 119, 25) ;
   color: white;
   font-weight: bold;
   padding: 8px 16px;
@@ -62,7 +62,7 @@
 }
 
 .cart-item button:hover {
-  background-color: #228B22;
+  background-color: rgb(114 , 155, 59);
 }
 
 .total-price {
@@ -86,7 +86,19 @@
 }
 /* CartPage.css */
 
-/* ... (existing styles) */
+.pay-now-button {
+  margin-top: 10px;
+  background-color:rgb(114 , 155, 59) ;
+  color: white;
+  font-weight: bold;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.pay-now-button:hover {
+  background-color: rgb(226, 119, 25);
+}
 
 /* Styles for the payment form modal */
 .payment-form-modal {
@@ -97,6 +109,7 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
   display: flex;
+  flex-direction: column; /* Update this to display elements in a column */
   justify-content: center;
   align-items: center;
 }
@@ -106,16 +119,41 @@
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-  max-width: 400px;
+  width: 400px;
+  
 }
 
 .close-button {
   margin-top: 20px;
   padding: 8px 16px;
-  background-color: #ff0000;
+  background-color: rgb(226, 119, 25);
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
 }
+/* Styles for mobile devices */
+@media screen and (max-width: 768px) {
+  /* Update cart-item and payment-form-modal styles for better mobile layout */
+  .cart-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
+  .cart-item img {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .payment-form-modal {
+    padding: 10px;
+  }
+
+  .payment-form {
+    width: 100%;
+  }
+}
+  .cart-page h2 {
+    font-size: 28px;
+    font-weight: bold;
+}
