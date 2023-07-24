@@ -32,7 +32,8 @@ const CheckoutForm = ({ totalPrice }) => {
         console.log(clientSecret)
         const response = await axios.post(
           /*set HTTPS=true&&*/
-          "http://localhost:5005/payments/payment",
+          //"http://localhost:5005/payments/payment",
+          "http://petapp.fly.dev/payments/payment",
           {
             id,
             amount: totalPrice * 100,
@@ -63,7 +64,8 @@ const CheckoutForm = ({ totalPrice }) => {
 
 function CartPage() {
   const { cartItems, setCartItems } = useContext(CartContext);
-  const [clientSecret, setClientSecret] = useState(null);
+  //const [clientSecret, setClientSecret] = useState(null);
+  const [clientSecret] = useState(null);
 
   useEffect(() => {
     const fetchCartItems = async () => {
@@ -126,10 +128,10 @@ function CartPage() {
     0
   );
 
-  const handleCheckout = async () => {
+  /*const handleCheckout = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:5005/payments/intent",
+        "http://petapp.fly.dev/payments/intent",
         {
           amount: totalPrice * 100,
         }
@@ -138,7 +140,7 @@ function CartPage() {
     } catch (error) {
       console.log(error);
     }
-  };
+  };*/
   return (
     <div>
       <ShopHeader title="Shop Page" />

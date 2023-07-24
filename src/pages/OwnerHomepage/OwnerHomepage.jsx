@@ -1,16 +1,17 @@
-import { Link, useHistory } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+//import { Link, useHistory } from "react-router-dom";
+//import React, { useState, useEffect } from "react";
+import React, { useState,  } from "react";
 import axios from "axios";
 import { Image } from "cloudinary-react";
 
 function OwnerHomepage() {
   const [imageSelected, setSelectedImage] = useState("");
   const [publicId, setPublicId] = useState("");
-  const [breed, setBreed] = useState("");
+  //const [breed, setBreed] = useState("");
   const [name, setName] = useState("");
   const [age, setAge] = useState(0);
-  const [weight, setWeight] = useState(0);
-  const [description, setDescription] = useState("");
+  //const [weight, setWeight] = useState(0);
+  //const [description, setDescription] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
   const [type, setType] = useState(""); // Add state for type
   const [temper, setTemper] = useState(""); // Add state for temper
@@ -60,7 +61,8 @@ function OwnerHomepage() {
     };
   
     axios
-      .post("http://localhost:5005/pet/petprofile", formData, config)
+    //.post("http://localhost:5005/pet/petprofile", formData, config)
+      .post("http://petapp.fly.dev/pet/petprofile", formData, config)
       .then((response) => {
         const data = response.data;
         console.log(data);

@@ -24,7 +24,8 @@ function GuidelinesPage() {
 
               Because the well-being of our furry pals is our top priority, we've laid down some rules and recommendations. Some of these apply to everyone, while others depend on the type of pet you want to adopt. These guidelines not only protect our pets but also help you figure out if you're truly ready to embrace the joy of adoption.
             </p>
-            <img src={listImg} alt="List for guidelines" className="w-3/5 h-auto md:w-1/4 md:w-1/3 lg:w-1/4 md:pl-8 mt-4 md:mt-0" />
+            {/*<img src={listImg} alt="List for guidelines" className="w-3/5 h-auto md:w-1/4 md:w-1/3 lg:w-1/4 md:pl-8 mt-4 md:mt-0" />*/}
+            <img src={listImg} alt="List for guidelines" className="w-3/5 h-auto md:w-2/3 lg:w-1/4 md:pl-8 mt-4 md:mt-0" />
           </div>
         </div>
 
@@ -40,14 +41,16 @@ function GuidelinesPage() {
                 <li><span className="underline underline-offset-4 text-black">Cats:</span> If you prefer a more independent and low-maintenance companion, a cat might be the right choice. Cats are generally more self-sufficient and require less exercise compared to dogs.</li>
                 <li><span className="underline underline-offset-4 text-black">Smaller Animals:</span> If you have limited space or prefer a pet that requires minimal exercise, smaller animals like hamsters, guinea pigs, or rabbits can be suitable options.</li>
               </ul>
-              <img src={dogRunning} alt="List for guidelines" className="w-3/5 h-auto md:w-1/4 md:w-1/3 lg:w-1/4 md:pl-8 mt-4 md:mt-0" />
+              {/*<img src={dogRunning} alt="List for guidelines" className="w-3/5 h-auto md:w-1/4 md:w-1/3 lg:w-1/4 md:pl-8 mt-4 md:mt-0" />*/}
+              <img src={dogRunning} alt="List for guidelines" className="w-full h-auto md:w-1/3 lg:w-1/4 md:pl-8 mt-4 md:mt-0" />
             </div>
           </div>
 <hr></hr>
           <div className="flex flex-col py-4">
             <h3 className="flex text-3xl py-4">Time and Attention</h3>
             <div className="flex flex-col md:flex-row items-center py-4 space-between">
-              <img src={catGrooming} alt="List for guidelines" className="w-3/5 h-auto md:w-1/4 md:w-1/3 lg:w-1/4 md:pl-8 mt-4 md:mt-0" />
+              {/*<img src={catGrooming} alt="List for guidelines" className="w-3/5 h-auto md:w-1/4 md:w-1/3 lg:w-1/4 md:pl-8 mt-4 md:mt-0" />*/}
+              <img src={catGrooming} alt="List for guidelines" className="w-full h-auto md:w-1/3 lg:w-1/4 md:pl-8 mt-4 md:mt-0" />
               <ul className="text-2xl text-justify text-zinc-400 lg:pl-8">
                 <li><span className="underline underline-offset-4 text-black">Dogs:</span> Dogs thrive on human interaction and companionship. They require regular feeding, exercise, grooming, and training. If you can dedicate time to training and socializing a dog, they can be incredibly loyal and loving companions.</li>
                 <li><span className="underline underline-offset-4 text-black">Cats:</span> Cats are generally more self-sufficient and can adapt well to a more independent lifestyle. They still require feeding, playtime, and affection, but they are often more low-maintenance compared to dogs.</li>
@@ -64,7 +67,8 @@ function GuidelinesPage() {
                 <li><span className="underline underline-offset-4 text-black">Cats:</span> Cats are generally more adaptable to various living environments. They can thrive in apartments as long as they have enough space for play, scratching posts, and litter boxes.</li>
                 <li><span className="underline underline-offset-4 text-black">Smaller Animals:</span> Smaller animals like hamsters, guinea pigs, or rabbits require appropriate enclosures or cages. Make sure you have enough space to accommodate their habitat and keep them safe.</li>
               </ul>
-              <img src={bunny} alt="List for guidelines" className="w-3/5 h-auto md:w-1/4 md:w-1/3 lg:w-1/4 md:pl-8 mt-4 md:mt-0" />
+              {/*<img src={bunny} alt="List for guidelines" className="w-3/5 h-auto md:w-1/4 md:w-1/3 lg:w-1/4 md:pl-8 mt-4 md:mt-0" />*/}
+              <img src={bunny} alt="List for guidelines" className="w-full h-auto md:w-1/3 lg:w-1/4 md:pl-8 mt-4 md:mt-0" />
             </div>
           </div>
         </div>
