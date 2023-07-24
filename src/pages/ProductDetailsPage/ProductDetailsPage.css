@@ -1,7 +1,7 @@
 .product-details-container {
     display: flex;
     justify-content: space-between;
-    background-image: url("../../images/bg-landing-2.jpg");
+    background-color: coral;
     height: 600px;
   }
   
