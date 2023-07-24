@@ -18,6 +18,7 @@ import ProductDetailsPage from "./pages/ProductDetailsPage/ProductDetailsPage";
 import CartPage from "./pages/CartPage/CartPage";
 import CartContext from "./components/cartContext";
 import OwnerHomepage from "./pages/OwnerHomepage/OwnerHomepage";
+import EditProfile from "./pages/EditProfile/EditProfile";
 
 
 import Navbar from "./components/Navbar/Navbar";
@@ -84,6 +85,14 @@ function App() {
                   </IsPrivate>
                 }
               />
+              <Route
+                path="/editprofile"
+                element={
+                  <IsPrivate>
+                    <EditProfile />
+                  </IsPrivate>
+                }
+              />
             
               <Route
                 path="/signup"
@@ -118,7 +127,6 @@ function App() {
                 }
               />
             </Routes>
-
           </>
         ) : (
           <LiveChat socket={socket} username={username} room={room} />

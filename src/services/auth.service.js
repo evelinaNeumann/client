@@ -35,6 +35,14 @@ class AuthService {
     return this.api.post("/auth/ownersignup", requestBody);
   };
 
+  editprofile = (requestBody) => {
+    return this.api.post("/auth/editprofile", requestBody);
+  };
+
+  editownerprofile = (requestBody) => {
+    return this.api.post("/auth/editownerprofile", requestBody);
+  };
+
   ownerlogin = (requestBody) => {
     return this.api.post("/auth/ownerlogin", requestBody);
   };
