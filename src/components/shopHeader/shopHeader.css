@@ -1,0 +1,23 @@
+/* Add styles for the cart items count */
+.cart-items-count {
+  
+    background-color: red; /* Choose your desired background color */
+    color: white; /* Choose your desired text color */
+    font-size: 22px;
+    font-weight: bold;
+    padding: 2px 12px; /* Adjust the padding for better visual appearance */
+    margin-top: -55px;
+  margin-bottom: 8px;
+  position: absolute;
+   /* Position the count relative to the bottom */
+  right: 8px; /* Adjust the value to move the count towards the left */
+  border-radius: 50%; /* To create a circular shape for the count */
+  }
+  
+  /* Adjust the position and size of the shopping cart icon */
+  .MdOutlineShoppingCart {
+    position: relative;
+    font-size: 50px;
+    margin-right: 16px;
+  }
+  
