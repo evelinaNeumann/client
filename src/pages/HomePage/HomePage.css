@@ -17,11 +17,6 @@
     border-radius: 8px;
   }
   
-  .carousel-slide .pet-details {
-    margin-left: 20px;
-    flex-grow: 1;
-  }
-  
   .carousel-slide .pet-info {
     background-color: #ffffff;
     border: 1px solid #dddddd;
@@ -43,5 +38,16 @@
   .carousel-button:disabled {
     opacity: 0.5;
     cursor: not-allowed;
+  }
+
+  .boxes {
+    display: flex;
+  }
+
+  .borderpet{
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   }
     

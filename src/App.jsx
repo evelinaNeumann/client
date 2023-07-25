@@ -19,6 +19,7 @@ import CartPage from "./pages/CartPage/CartPage";
 import CartContext from "./components/cartContext";
 import OwnerHomepage from "./pages/OwnerHomepage/OwnerHomepage";
 import EditProfile from "./pages/EditProfile/EditProfile";
+import OwnerProfilePage from "./pages/OwnerProfilePage/OwnerProfilePage";
 
 
 import Navbar from "./components/Navbar/Navbar";
@@ -93,7 +94,9 @@ function App() {
                   </IsPrivate>
                 }
               />
-            
+            <Route path="/owner/:ownerId" element={
+                    <OwnerProfilePage />
+                } />
               <Route
                 path="/signup"
                 element={

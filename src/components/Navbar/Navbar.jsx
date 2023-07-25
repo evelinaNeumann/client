@@ -110,7 +110,7 @@ export default function Navbar() {
                  Logout
                </button>
              </li>
-             <span>{user && user.name}</span>
+             <span>{user.name ?  (user.name) : (user.ownerName)}</span>
         </ul>
         ) : (
           <ul className="DESKTOP-MENU hidden space-x-8 lg:flex">
