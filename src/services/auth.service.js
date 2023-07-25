@@ -29,7 +29,7 @@ class AuthService {
   signup = (requestBody) => {
     //return this.api.post("/auth/signup", requestBody);
     // same as
-    return axios.post("https://petapp.fly.dev/auth/singup");
+    return axios.post("https://petapp.fly.dev/singup");
   };
 
   ownersignup = (requestBody) => {
