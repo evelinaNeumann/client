@@ -23,13 +23,13 @@ class AuthService {
   login = (requestBody) => {
     //return this.api.post("/auth/login", requestBody);
     // same as
-     return axios.post("https://petapp.fly.dev/login");
+     return axios.post("https://petapp.fly.dev/auth/login");
   };
 
   signup = (requestBody) => {
     //return this.api.post("/auth/signup", requestBody);
     // same as
-    return axios.post("https://petapp.fly.dev/singup");
+    return axios.post("https://petapp.fly.dev/auth/singup");
   };
 
   ownersignup = (requestBody) => {
