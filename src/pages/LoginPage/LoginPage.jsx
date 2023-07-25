@@ -20,11 +20,11 @@ function LoginPage() {
 
   const handleLoginSubmit = (e) => {
     e.preventDefault();
-    //const requestBody = { email, password };
+    const requestBody = { email, password };
 
     // Send a request to the server using axios
     
-    axios.post(`https://petapp.fly.dev/auth/login`)
+    axios.post(`https://petapp.fly.dev/auth/login`, requestBody)
       .then((response) => {
         storeToken(response.data.authToken);
         authenticateUser();
