@@ -14,7 +14,7 @@ function ProductDetailsPage() {
     const fetchProductDetails = async () => {
       try {
         //const res = await fetch(`http://localhost:5005/api/shop_products/${productId}`);
-        const res = await fetch(`http://petapp.fly.dev/api/shop_products/${productId}`);
+        const res = await fetch(`https://petapp.fly.dev/api/shop_products/${productId}`);
         const data = await res.json();
         setProduct(data);
       } catch (error) {
@@ -28,7 +28,7 @@ function ProductDetailsPage() {
   const handleAddToCart = async (productId, name, image) => {
     try {
       //  const res = await fetch(`http://localhost:5005/api/cart/${productId}`, {
-      const res = await fetch(`http://petapp.fly.dev/api/cart/${productId}`, {
+      const res = await fetch(`https://petapp.fly.dev/api/cart/${productId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
