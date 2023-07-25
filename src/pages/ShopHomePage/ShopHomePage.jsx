@@ -14,7 +14,7 @@ function ShopHomePage() {
       try {
         //before the deployment 
         //const res = await fetch("http://localhost:5005/api/shop_products");
-        const res = await fetch("http://petapp.fly.dev/api/shop_products");
+        const res = await fetch("https://petapp.fly.dev/api/shop_products");
         const data = await res.json();
         console.log("Fetched products:", data);
         const groupedProducts = groupProductsByCategory(data);
