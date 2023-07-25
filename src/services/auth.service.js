@@ -27,23 +27,25 @@ class AuthService {
   };
 
   signup = (requestBody) => {
-    return this.api.post("/auth/signup", requestBody);
+    //return this.api.post("/auth/signup", requestBody);
     // same as
-    // return axios.post("http://localhost:5005/auth/singup");
+    return axios.post("https://petapp.fly.dev/auth/singup");
   };
 
   ownersignup = (requestBody) => {
-    return this.api.post("/auth/ownersignup", requestBody);
+    //return this.api.post("/auth/ownersignup", requestBody);
+    return axios.post("https://petapp.fly.dev/auth/ownersignup", requestBody);
   };
 
   ownerlogin = (requestBody) => {
-    return this.api.post("/auth/ownerlogin", requestBody);
+    //return this.api.post("/auth/ownerlogin", requestBody);
+    return axios.post("https://petapp.fly.dev/auth/ownerlogin", requestBody);
   };
 
   verify = () => {
-    return this.api.get("/auth/verify");
+    //return this.api.get("/auth/verify");
     // same as
-    // return axios.post("http://localhost:5005/auth/verify");
+     return axios.post("https://petapp.fly.dev/auth/verify");
   };
 }
 
