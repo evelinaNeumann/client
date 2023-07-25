@@ -1,20 +1,17 @@
-import { Link, useHistory } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 import axios from "axios";
 import { Image } from "cloudinary-react";
 
-function OwnerHomepage() {
+function PetForm({ onSubmit, onDelete }) {
   const [imageSelected, setSelectedImage] = useState("");
   const [publicId, setPublicId] = useState("");
-  const [breed, setBreed] = useState("");
   const [name, setName] = useState("");
   const [age, setAge] = useState(0);
-  const [weight, setWeight] = useState(0);
-  const [description, setDescription] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
-  const [type, setType] = useState(""); // Add state for type
-  const [temper, setTemper] = useState(""); // Add state for temper
-  const [specialNeeds, setSpecialNeeds] = useState(false); // Initialize as false
+  const [type, setType] = useState("");
+  const [temper, setTemper] = useState("");
+  const [specialNeeds, setSpecialNeeds] = useState(false);
 
   const uploadImage = () => {
     const formData = new FormData();
@@ -33,45 +30,27 @@ function OwnerHomepage() {
   };
 
   const handleSubmit = () => {
-    // Get the JWT token from wherever you have stored it (e.g., localStorage)
-    const authToken = localStorage.getItem("authToken");
-  
-    // Check if the token is available
-    if (!authToken) {
-      console.error("No authentication token found.");
-      return;
-    }
-  
-    const formData = {
+    onSubmit({
       name,
-      category: selectedCategory,
+      selectedCategory,
       type,
       age,
       temper,
-      special_needs: !!specialNeeds, // Convert to boolean
+      special_needs: specialNeeds,
       image: publicId,
-    };
-  
-    // Include the JWT token in the request headers
-    const config = {
-      headers: {
-        Authorization: `Bearer ${authToken}`,
-      },
-    };
-  
-    axios
-      .post("http://localhost:5005/pet/petprofile", formData, config)
-      .then((response) => {
-        const data = response.data;
-        console.log(data);
-        // Add any additional logic for success
-      })
-      .catch((error) => {
-        console.error(error);
-        // Add any additional logic for error handling
-      });
+    });
+
+    // Reset the form fields
+    setSelectedImage("");
+    setPublicId("");
+    setName("");
+    setSelectedCategory("");
+    setType("");
+    setAge(0);
+    setTemper("");
+    setSpecialNeeds(false);
   };
-  
+
   return (
     <div>
       <input
@@ -88,7 +67,7 @@ function OwnerHomepage() {
           publicId={publicId}
         />
       )}
-     
+
       <div>
         <label>Name:</label>
         <input
@@ -111,14 +90,14 @@ function OwnerHomepage() {
         </select>
       </div>
       <div>
-          <label>Type:</label>
-          <input
-            type="text"
-            placeholder="Type"
-            value={type}
-            onChange={(event) => setType(event.target.value)}
-          />
-        </div>
+        <label>Type:</label>
+        <input
+          type="text"
+          placeholder="Type"
+          value={type}
+          onChange={(event) => setType(event.target.value)}
+        />
+      </div>
       <div>
         <label>Age:</label>
         <input
@@ -129,25 +108,100 @@ function OwnerHomepage() {
         />
       </div>
       <div>
-          <label>Temper:</label>
-          <input
-            type="text"
-            placeholder="Temper"
-            value={temper}
-            onChange={(event) => setTemper(event.target.value)}
+        <label>Temper:</label>
+        <input
+          type="text"
+          placeholder="Temper"
+          value={temper}
+          onChange={(event) => setTemper(event.target.value)}
+        />
+      </div>
+      <div>
+        <label>Special Needs:</label>
+        <input
+          type="checkbox"
+          checked={specialNeeds}
+          onChange={(event) => setSpecialNeeds(event.target.checked)}
+        />
+      </div>
+      <button onClick={handleSubmit}>Submit</button>
+      <button onClick={onDelete}>Delete</button>
+    </div>
+  );
+}
+
+function OwnerHomepage() {
+  const [pets, setPets] = useState([]);
+  const navigate = useNavigate();
+
+  const handleSubmitAll = () => {
+    // Get the JWT token from wherever you have stored it (e.g., localStorage)
+    const authToken = localStorage.getItem("authToken");
+
+    // Check if the token is available
+    if (!authToken) {
+      console.error("No authentication token found.");
+      return;
+    }
+
+    // Include the JWT token in the request headers
+    const config = {
+      headers: {
+        Authorization: `Bearer ${authToken}`,
+      },
+    };
+
+    // Loop through each pet in the pets array and make a separate API call for each
+    pets.forEach((pet, index) => {
+      axios
+        .post("http://localhost:5005/pet/petprofile", pet, config)
+        .then((response) => {
+          const data = response.data;
+          console.log(data);
+          if (index === pets.length - 1) {
+            // This is the last pet, so navigate to the dashboard
+            navigate("/ownerdashboard");
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+          // Add any additional logic for error handling
+        });
+    });
+  };
+
+  const handleDeletePet = (id) => {
+    setPets((prevPets) => prevPets.filter((pet) => pet.id !== id));
+  };
+
+  return (
+    <div>
+      {/* Show the 'Add' button only when the form is not visible */}
+      {pets.length === 0 && (
+        <button
+          onClick={() =>
+            setPets((prevPets) => [...prevPets, { id: Date.now() }])
+          }
+        >
+          Add
+        </button>
+      )}
+
+      {/* Show the form when 'Add' is clicked */}
+      {pets.map((pet, index) => (
+        <div key={pet.id}>
+          <h2>Pet {index + 1}</h2>
+          <PetForm
+            onSubmit={(formData) => {
+              setPets((prevPets) => [...prevPets, formData]);
+            }}
+            onDelete={() => handleDeletePet(pet.id)}
           />
         </div>
-        <div>
-  <label>Special Needs:</label>
-  <input
-    type="checkbox"
-    checked={specialNeeds}
-    onChange={(event) => setSpecialNeeds(event.target.checked)}
-  />
-</div>
-        <button onClick={handleSubmit}>Submit</button>
-      </div>
-    
+      ))}
+
+      <button onClick={handleSubmitAll}>Submit All</button>
+    </div>
   );
 }
 
