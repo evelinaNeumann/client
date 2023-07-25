@@ -45,7 +45,7 @@ class AuthService {
   verify = () => {
     //return this.api.get("/auth/verify");
     // same as
-     return axios.post("https://petapp.fly.dev/auth/verify");
+     return axios.get("https://petapp.fly.dev/auth/verify");
   };
 }
 
