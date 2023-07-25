@@ -25,7 +25,13 @@ function AuthProviderWrapper(props) {
           `https://petapp.fly.dev/auth/verify`,
           { headers: { Authorization: `Bearer ${storedToken}` } }
         )
-        .then((response) => {})
+        .then((response) => {
+          const user = response.data;
+          // Update state variables
+          setIsLoggedIn(true);
+          setIsLoading(false);
+          setUser(user);
+        })
         
 
       // Or using a service
