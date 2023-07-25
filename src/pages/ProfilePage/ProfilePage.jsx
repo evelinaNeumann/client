@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
 import io from "socket.io-client";
 //const socket = io.connect("http://localhost:5005");
-const socket = io.connect("http://petapp.fly.dev");
+const socket = io.connect("https://petapp.fly.dev");
 
 const ProfilePage = () => {
   //const { isLoggedIn, user, logOutUser } = useContext(AuthContext);

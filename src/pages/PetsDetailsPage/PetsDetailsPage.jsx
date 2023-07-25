@@ -9,7 +9,7 @@ const PetDetailsPage = () => {
     const fetchPetDetails = async () => {
       try {
         //const res = await fetch(`http://localhost:5005/api/pets/${petId}`);
-        const res = await fetch(`http://petapp.fly.dev/api/pets/${petId}`);
+        const res = await fetch(`https://petapp.fly.dev/api/pets/${petId}`);
         const petData = await res.json();
         setPet(petData);
       } catch (error) {

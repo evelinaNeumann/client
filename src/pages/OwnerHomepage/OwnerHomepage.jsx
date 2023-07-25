@@ -62,7 +62,7 @@ function OwnerHomepage() {
   
     axios
     //.post("http://localhost:5005/pet/petprofile", formData, config)
-      .post("http://petapp.fly.dev/pet/petprofile", formData, config)
+      .post("https://petapp.fly.dev/pet/petprofile", formData, config)
       .then((response) => {
         const data = response.data;
         console.log(data);

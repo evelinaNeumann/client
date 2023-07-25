@@ -22,13 +22,13 @@ function HomePage() {
         let apiUrl = "";
   
         if (user.preference === "Dogs") {
-          apiUrl = "http://petapp.fly.dev/pet/dogs";
+          apiUrl = "https://petapp.fly.dev/pet/dogs";
         } else if (user.preference === "Cats") {
-          apiUrl = "http://petapp.fly.dev/pet/cats";
+          apiUrl = "https://petapp.fly.dev/pet/cats";
         } else if (user.preference === "Small Pets") {
-          apiUrl = "http://petapp.fly.dev/pet/small_animals";
+          apiUrl = "https://petapp.fly.dev/pet/small_animals";
         } else {
-          apiUrl = "http://petapp.fly.dev/pet/pets";
+          apiUrl = "https://petapp.fly.dev/pet/pets";
         }
   
         const res = await fetch(apiUrl);
@@ -47,22 +47,22 @@ function HomePage() {
   
 
   const getDogs = async () => {
-    const res = await fetch("http://petapp.fly.dev/pet/dogs");
+    const res = await fetch("https://petapp.fly.dev/pet/dogs");
     const finalRes = await res.json();
     setPets(finalRes);
   };
   const getCats = async () => {
-    const res = await fetch("http://petapp.fly.dev/pet/cats");
+    const res = await fetch("https://petapp.fly.dev/pet/cats");
     const finalRes = await res.json();
     setPets(finalRes);
   };
   const getSmallPets = async () => {
-    const res = await fetch("http://petapp.fly.dev/pet/small_animals");
+    const res = await fetch("https://petapp.fly.dev/pet/small_animals");
     const finalRes = await res.json();
     setPets(finalRes);
   };
   const getAllPets = async () => {
-    const res = await fetch("http://petapp.fly.dev/pet/pets");
+    const res = await fetch("https://petapp.fly.dev/pet/pets");
     const finalRes = await res.json();
     setPets(finalRes);
   };
@@ -155,13 +155,13 @@ function HomePage() {
         let apiUrl = "";
 
         if (user.preference === "Dogs") {
-          apiUrl = "http://petapp.fly.dev/pet/dogs";
+          apiUrl = "https://petapp.fly.dev/pet/dogs";
         } else if (user.preference === "Cats") {
-          apiUrl = "http://petapp.fly.dev/pet/cats";
+          apiUrl = "https://petapp.fly.dev/pet/cats";
         } else if (user.preference === "Small Pets") {
-          apiUrl = "http://petapp.fly.dev/pet/small_animals";
+          apiUrl = "https://petapp.fly.dev/pet/small_animals";
         } else {
-          apiUrl = "http://petapp.fly.dev/pet/pets";
+          apiUrl = "https://petapp.fly.dev/pet/pets";
         }
 
         const res = await fetch(apiUrl);
