@@ -23,7 +23,7 @@ class AuthService {
   login = (requestBody) => {
     //return this.api.post("/auth/login", requestBody);
     // same as
-     return axios.post("https://petapp.fly.dev/auth/login");
+     return axios.post("https://petapp.fly.dev/auth/login", requestBody);
   };
 
   signup = (requestBody) => {
