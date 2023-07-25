@@ -42,10 +42,10 @@ class AuthService {
     return axios.post("https://petapp.fly.dev/auth/ownerlogin", requestBody);
   };
 
-  verify = () => {
+  verify = (requestBody) => {
     //return this.api.get("/auth/verify");
     // same as
-     return axios.get("https://petapp.fly.dev/auth/verify");
+     return axios.get("https://petapp.fly.dev/auth/verify", requestBody);
   };
 }
 
