@@ -21,9 +21,9 @@ class AuthService {
   }
 
   login = (requestBody) => {
-    return this.api.post("/auth/login", requestBody);
+    //return this.api.post("/auth/login", requestBody);
     // same as
-    // return axios.post("http://localhost:5005/auth/login");
+     return axios.post("https://petapp.fly.dev/auth/login");
   };
 
   signup = (requestBody) => {
