@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
 import io from "socket.io-client";
-const socket = io.connect("http://localhost:5005");
+const socket = io.connect("https://petapp.fly.dev");
 
 const ProfilePage = () => {
-    const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
+    const {  user } = useContext(AuthContext);
     const [username, setUsername] = useState("");
   const [room, setRoom] = useState("");
-  const [showChat, setShowChat] = useState(false);
+    //const [showChat, setShowChat] = useState(false);
+    const [ setShowChat] = useState(false);
 
   const joinRoom = () => {
     console.log(username, room);
