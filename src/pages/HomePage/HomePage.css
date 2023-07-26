@@ -51,3 +51,24 @@
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   }
     
+  .carousel-wrapper {
+    /* Adjust this to your desired carousel height */
+    height: 400px;
+  }
+  
+  .carousel-buttons {
+    position: absolute;
+    top: 50%;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .carousel-button {
+    /* Add styles for the buttons, e.g., background, padding, etc. */
+  }
+  
+  .carousel-button.next {
+    margin-left: 10px;
+  }
