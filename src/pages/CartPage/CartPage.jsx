@@ -4,24 +4,18 @@ import {
   CardElement,
   useStripe,
   useElements,
-  
+  Elements,
 } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 import CartContext from "../../components/cartContext";
+import ShopHeader from "../../components/shopHeader/shopHeader";
 
-import "./CartPage.css";
-import PaymentFormModal from "../../components/PaymentFormModal/PaymentFormModal";
+const stripePromise = loadStripe("pk_test_51NRxMIAJ0RHQyfziSQFiiswOORe2ztGLwkPBLRjk5JezRTwYfqJ4VQ5D3ZzF5qw58O4M2KflSYTmdelmUVJEsWSJ00sshA570x");
 
-
-
-
-function CartPage() {
-  const { cartItems, setCartItems } = useContext(CartContext);
-  const [clientSecret, setClientSecret] = useState(null);
-  const [showPaymentForm, setShowPaymentForm] = useState(false);
-
+const CheckoutForm = ({ totalPrice }) => {
   const stripe = useStripe();
   const elements = useElements();
-  
+  const clientSecret = process.env.REACT_APP_STRIPE_SECRET_KEY;
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -35,10 +29,11 @@ function CartPage() {
       const { id } = paymentMethod;
 
       try {
-        console.log(clientSecret);
+        console.log(clientSecret)
         const response = await axios.post(
           /*set HTTPS=true&&*/
-          "http://localhost:5005/payments/payment",
+          //"http://localhost:5005/payments/payment",
+          "https://petapp.fly.dev/payments/payment",
           {
             id,
             amount: totalPrice * 100,
@@ -57,11 +52,25 @@ function CartPage() {
     }
   };
 
+  return (
+    <form onSubmit={handleSubmit}>
+      <CardElement />
+      <button type="submit" disabled={!stripe}>
+        Pay
+      </button>
+    </form>
+  );
+};
+
+function CartPage() {
+  const { cartItems, setCartItems } = useContext(CartContext);
+  //const [clientSecret, setClientSecret] = useState(null);
+  const [clientSecret] = useState(null);
 
   useEffect(() => {
     const fetchCartItems = async () => {
       try {
-        const res = await fetch("http://localhost:5005/api/cart");
+        const res = await fetch("https://petapp.fly.dev/api/cart");
         const data = await res.json();
         console.log("Received cart items:", data);
         setCartItems(data);
@@ -118,18 +127,11 @@ function CartPage() {
     (total, item) => total + item.price * item.quantity,
     0
   );
-  const handlePayNowClicked = () => {
-    setShowPaymentForm(true);
-  };
 
-  const handlePaymentFormClose = () => {
-    setShowPaymentForm(false);
-  };
-
-  const handleCheckout = async () => {
+  /*const handleCheckout = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:5005/payments/intent",
+        "https://petapp.fly.dev/payments/intent",
         {
           amount: totalPrice * 100,
         }
@@ -138,64 +140,44 @@ function CartPage() {
     } catch (error) {
       console.log(error);
     }
-  };
-
-
-
+  };*/
   return (
-    <div className="cart-page ui-serif-font">
-      <h2>Welcome to your Cart</h2>
+    <div>
+      <ShopHeader title="Shop Page" />
+      <h2>Cart</h2>
       {cartItems.length === 0 ? (
-        <p className="empty-cart">Your cart is empty.</p>
+        <p>Your cart is empty.</p>
       ) : (
         <div>
-          {/* Move the cartItems.map block inside the conditional rendering */}
           {cartItems.map((item) => (
-            <div className="cart-item" key={item._id}>
-              {/* Use the 'image' property from each cart item 
-              <img
-                src={item.image}
-                alt={item.name}
-                className="cart-item-image"
-              />*/}
-              <div className="cart-item-details">
-                <h3>{item.name}</h3>
-                <p>Category: {item.category}</p>
-                <p>Price: ${item.price}</p>
-                <label>
-                  Quantity:
-                  <input
-                    type="number"
-                    min="0"
-                    value={item.quantity}
-                    onChange={(event) =>
-                      handleQuantityChange(item.productId, event)
-                    }
-                    className="cart-item-quantity-input"
-                  />
-                </label>
-                <button
-                  className="cart-item-remove-button"
-                  onClick={() => handleRemoveFromCart(item.productId)}
-                >
-                  Remove from Cart
-                  
-                </button>
-                
-              </div>
-              
+            <div key={item._id}>
+              <img src={item.image} alt={item.name} />
+              <h3>Name: {item.name}</h3>
+              <p>Category: {item.category}</p>
+              <p>Price: ${item.price}</p>
+              <label>
+                Quantity:
+                <input
+                  type="number"
+                  min="0"
+                  value={item.quantity}
+                  onChange={(event) =>
+                    handleQuantityChange(item.productId, event)
+                  }
+                />
+              </label>
+              <button
+                className="bg-lime-800 hover:bg-lime-800 text-white font-bold py-2 px-4 rounded"
+                onClick={() => handleRemoveFromCart(item.productId)}
+              >
+                Remove from Cart
+              </button>
             </div>
           ))}
-          <p className="total-price">Total Price: ${totalPrice}</p>
-          <button className="pay-now-button" onClick={handlePayNowClicked}>
-            Pay Now
-          </button>
-          {showPaymentForm && (
-            <PaymentFormModal
-              totalPrice={totalPrice}
-              onClose={handlePaymentFormClose}
-            />
-          )}
+          <p>Total Price: ${totalPrice}</p>
+          <Elements stripe={stripePromise}>
+      <CheckoutForm totalPrice={totalPrice} clientSecret={clientSecret} />
+    </Elements>
         </div>
       )}
     </div>
