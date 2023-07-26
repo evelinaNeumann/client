@@ -64,8 +64,10 @@ const CheckoutForm = ({ totalPrice }) => {
 
 function CartPage() {
   const { cartItems, setCartItems } = useContext(CartContext);
+
   //const [clientSecret, setClientSecret] = useState(null);
   const [clientSecret] = useState(null);
+
 
   useEffect(() => {
     const fetchCartItems = async () => {
@@ -140,7 +142,9 @@ function CartPage() {
     } catch (error) {
       console.log(error);
     }
+
   };*/
+
   return (
     <div>
       <ShopHeader title="Shop Page" />
