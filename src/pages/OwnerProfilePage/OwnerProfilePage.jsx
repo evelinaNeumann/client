@@ -21,7 +21,8 @@ function OwnerProfilePage() {
 
   const fetchOwnerPets = async () => {
     try {
-      const res = await fetch(`http://localhost:5005/api/pets/${ownerId}`);
+
+      const res = await fetch(`https://petapp.fly.dev/api/pets/${ownerId}`);
       const data = await res.json();
       setOwnerPets(data);
     } catch (error) {
@@ -31,7 +32,7 @@ function OwnerProfilePage() {
 
   useEffect(() => {
     fetchOwnerPets();
-  }, [ownerId]);
+  }, );
 
   const joinRoom = () => {
     console.log(room);
@@ -42,7 +43,7 @@ function OwnerProfilePage() {
   useEffect(() => {
     const fetchOwnerData = async () => {
       try {
-        const res = await fetch(`http://localhost:5005/api/owner/${ownerId}`);
+        const res = await fetch(`https://petapp.fly.dev"/api/owner/${ownerId}`);
         const data = await res.json();
         setOwner(data);
       } catch (error) {
