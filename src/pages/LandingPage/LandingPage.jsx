@@ -1,9 +1,6 @@
-t
-//import { Link, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
-//import { useState } from "react";
 
 import catDoodle from "../../images/cat-doodle.jpg";
 import dogDoodle from "../../images/dog-doodle.jpg";
@@ -15,11 +12,8 @@ import catThinking from "../../images/cat-thinking.png";
 import paws from "../../images/paws.png";
 
 function LandingPage(props) {
-
-  //const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
-  const { isLoggedIn, } = useContext(AuthContext);
-  //  const navigate = useNavigate();
-
+  const { isLoggedIn } = useContext(AuthContext);
+ 
   return (
     <div>
       {!isLoggedIn && (
