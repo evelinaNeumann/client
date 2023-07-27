@@ -8,11 +8,11 @@ export default function Navbar() {
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
   const [isNavOpen, setIsNavOpen] = useState(false); // initiate isNavOpen state with false
 
-  const handleChatClick = () => {
+ /* const handleChatClick = () => {
     // Implement the logic for opening the live chat window
     // e.g., using a chat library or triggering a chat modal
     console.log("Open live chat");
-  };
+  };*/
 
 
   return (
