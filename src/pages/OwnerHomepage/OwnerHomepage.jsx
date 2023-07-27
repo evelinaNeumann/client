@@ -1,9 +1,9 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import axios from "axios";
 import { Image } from "cloudinary-react";
 
-function PetForm({ onSubmit, onDelete }) {
+function PetForm({ onSubmit }) {
   const [imageSelected, setSelectedImage] = useState("");
   const [publicId, setPublicId] = useState("");
   const [name, setName] = useState("");
@@ -30,6 +30,11 @@ function PetForm({ onSubmit, onDelete }) {
   };
 
   const handleSubmit = () => {
+    // Add validation to check if age is a valid number
+    if (!Number.isInteger(age) || age < 0) {
+      console.error("Invalid age. Please enter a valid positive number.");
+      return;
+    }
     onSubmit({
       name,
       selectedCategory,
@@ -49,6 +54,15 @@ function PetForm({ onSubmit, onDelete }) {
     setAge(0);
     setTemper("");
     setSpecialNeeds(false);
+  };
+
+  const handleChangeAge = (event) => {
+    const value = event.target.value;
+    if (value === "" || isNaN(value)) {
+      setAge(0);
+    } else {
+      setAge(parseInt(value));
+    }
   };
 
   return (
@@ -104,7 +118,7 @@ function PetForm({ onSubmit, onDelete }) {
           type="number"
           placeholder="Age"
           value={age}
-          onChange={(event) => setAge(parseInt(event.target.value))}
+          onChange={handleChangeAge}
         />
       </div>
       <div>
@@ -125,16 +139,14 @@ function PetForm({ onSubmit, onDelete }) {
         />
       </div>
       <button onClick={handleSubmit}>Submit</button>
-      <button onClick={onDelete}>Delete</button>
     </div>
   );
 }
 
 function OwnerHomepage() {
-  const [pets, setPets] = useState([]);
   const navigate = useNavigate();
 
-  const handleSubmitAll = () => {
+  const handleSubmit = (formData) => {
     // Get the JWT token from wherever you have stored it (e.g., localStorage)
     const authToken = localStorage.getItem("authToken");
 
@@ -151,56 +163,25 @@ function OwnerHomepage() {
       },
     };
 
-    // Loop through each pet in the pets array and make a separate API call for each
-    pets.forEach((pet, index) => {
-      axios
-        .post("http://localhost:5005/pet/petprofile", pet, config)
-        .then((response) => {
-          const data = response.data;
-          console.log(data);
-          if (index === pets.length - 1) {
-            // This is the last pet, so navigate to the dashboard
-            navigate("/ownerdashboard");
-          }
-        })
-        .catch((error) => {
-          console.error(error);
-          // Add any additional logic for error handling
-        });
-    });
-  };
-
-  const handleDeletePet = (id) => {
-    setPets((prevPets) => prevPets.filter((pet) => pet.id !== id));
+    // Make the API call to add the new pet
+    axios
+      .post("http://localhost:5005/pet/petprofile", formData, config)
+      .then((response) => {
+        const data = response.data;
+        console.log(data);
+        // After successful addition, navigate to the dashboard
+        navigate("/ownerdashboard/:ownerId");
+      })
+      .catch((error) => {
+        console.error(error);
+        // Add any additional logic for error handling
+      });
   };
 
   return (
     <div>
-      {/* Show the 'Add' button only when the form is not visible */}
-      {pets.length === 0 && (
-        <button
-          onClick={() =>
-            setPets((prevPets) => [...prevPets, { id: Date.now() }])
-          }
-        >
-          Add
-        </button>
-      )}
-
-      {/* Show the form when 'Add' is clicked */}
-      {pets.map((pet, index) => (
-        <div key={pet.id}>
-          <h2>Pet {index + 1}</h2>
-          <PetForm
-            onSubmit={(formData) => {
-              setPets((prevPets) => [...prevPets, formData]);
-            }}
-            onDelete={() => handleDeletePet(pet.id)}
-          />
-        </div>
-      ))}
-
-      <button onClick={handleSubmitAll}>Submit All</button>
+      <h1>Add a Pet</h1>
+      <PetForm onSubmit={handleSubmit} />
     </div>
   );
 }
