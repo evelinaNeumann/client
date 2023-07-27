@@ -4,7 +4,10 @@ import { Link } from "react-router-dom";
 const PetsPage = ( {key, category, name, type, age, temper, special_needs, image} ) => {
   return (
     <div>
-        <img src={image}alt={name}/>
+
+       {/*<img src={image} alt="Pet picture"/>*/}
+        <img src={image} alt={name}/>
+
         <p><span>Name:</span> {name}</p>
         <div>
             {category === "small_pet" ? 

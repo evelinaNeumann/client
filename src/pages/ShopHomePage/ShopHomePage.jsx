@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { FaUserCircle } from "react-icons/fa";
-import { MdOutlineShoppingCart } from "react-icons/md";
 import AliceCarousel from "react-alice-carousel";
+import ShopHeader from "../../components/shopHeader/shopHeader";
 import "react-alice-carousel/lib/scss/alice-carousel.scss";
 import "./ShopHomePage.css";
 
@@ -12,8 +11,8 @@ function ShopHomePage() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        //before the deployment 
-        //const res = await fetch("http://localhost:5005/api/shop_products");
+
+
         const res = await fetch("https://petapp.fly.dev/api/shop_products");
         const data = await res.json();
         console.log("Fetched products:", data);
@@ -75,16 +74,17 @@ function ShopHomePage() {
   return (
     <div className="shop-home-page">
       <h1 className="shadow h-20 flex justify-between items-center">
-        <div className="flex items-center">Shop Home page</div>
-        <div className="flex items-center">
-          <FaUserCircle size={50} />
-          <MdOutlineShoppingCart size={50} style={{ marginRight: "16px" }} />
-        </div>
+        <div></div>
+  <div className="flex items-center"  style={{ fontSize: "28px" }}>Welcome to our shop</div>
+  <ShopHeader/>
+
       </h1>
       {Object.keys(groupedProducts).length > 0 ? (
         Object.entries(groupedProducts).map(([category, products]) => (
-          <div key={category} className={`${category.toLowerCase()} category`}>
-            <h2>{category}</h2>
+          <div key={category} className={`category ${category.toLowerCase()}`}>
+            <h2 className={`category-name-${category.toLowerCase()}`}>
+              {category}
+            </h2>
             <AliceCarousel
               mouseTracking
               items={mapImagesToSlides(

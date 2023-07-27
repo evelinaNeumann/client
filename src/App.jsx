@@ -31,23 +31,20 @@ import { loadStripe } from "@stripe/stripe-js";
 
 
 
-const stripePromise = loadStripe('pk_test_51NRxMIAJ0RHQyfziSQFiiswOORe2ztGLwkPBLRjk5JezRTwYfqJ4VQ5D3ZzF5qw58O4M2KflSYTmdelmUVJEsWSJ00sshA570x');
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 
-//version before deployment
-//const socket = io.connect("http://localhost:5005");
+const stripePromise = loadStripe(
+  "pk_test_51NRxMIAJ0RHQyfziSQFiiswOORe2ztGLwkPBLRjk5JezRTwYfqJ4VQ5D3ZzF5qw58O4M2KflSYTmdelmUVJEsWSJ00sshA570x"
+);
+
 const socket = io.connect("https://petapp.fly.dev");
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
-  //commented this section out, there were not assignted values that coused errors during deployment 
   const [username, /*setUsername*/] = useState("");
   const [room, /*setRoom*/] = useState("");
   const [showChat, /*setShowChat*/] = useState(false);
-
-  //const options = {
-  //clientSecret: process.env.STRIPE_SECRET_KEY
-
-  //};
 
  /* const joinRoom = () => {
     //console.log(username, room);
