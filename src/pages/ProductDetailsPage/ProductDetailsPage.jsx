@@ -70,7 +70,7 @@ function ProductDetailsPage() {
 
   return (
     <div>
-      <ShopHeader title />
+      <ShopHeader title="Shop Page" />
       <h2>Product Details</h2>
       <div className="product-details-container">
         <div className="product-image-container">

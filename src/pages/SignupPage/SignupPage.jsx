@@ -61,11 +61,9 @@ function SignupPage() {
             <div className="w-full lg:w-1/2 flex flex-col items-center  p-12 bg-no-repeat bg-cover bg-center" style={{ backgroundImage: `url(${PetImg2})`, objectFit: "scale-down" }}>
               <h1 style={{ color: "rgb(63, 98, 18)" }} className="text-3xl mb-3 font-bold">Welcome</h1>
               <div>
-
                 <p style={{ color: "rgb(63, 98, 18)" }} className="mb-3 font-semibold text-black">Welcome to the Friends furr-ever app! Search for your perfect match, change your life <br /> 
                 <Link to="/guidelines" style={{ color: "rgb(63, 98, 18)" }}>
                 Guidelines</Link>Learn more</p>
-
               </div>
             </div>
 
