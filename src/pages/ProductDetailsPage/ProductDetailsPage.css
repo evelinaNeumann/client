@@ -69,12 +69,16 @@
 .button:hover {
   background-color: rgb(63, 98, 18); /* Change button background color on hover */
 }
-
+h2{
+  color: rgb(63, 98, 18);
+  font-weight: bold;
+  font-size: 35px;
+}
 h3 {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 40px;
+  font-size: 25px;
   font-weight: bold;
 }
 
