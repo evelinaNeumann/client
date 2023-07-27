@@ -74,7 +74,7 @@ function App() {
               <Route path="/" element={<LandingPage />} />
               <Route path="/home" element={<HomePage />} />
               <Route path="/ownerhome" element={<OwnerHomepage />} />
-              <Route path="/ownerdashboard" element={<OwnerDashboard />} />
+              
 
               <Route path="/pets/:petId" component={PetDetailsPage} />
               <Route path="/guidelines" element={<GuidelinesPage />} />
