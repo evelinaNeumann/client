@@ -38,11 +38,13 @@ class AuthService {
   };
 
   editprofile = (requestBody) => {
-    return this.api.post("/auth/editprofile", requestBody);
+   // return this.api.post("/auth/editprofile", requestBody);
+   return axios.post("/auth/editprofile", requestBody);
   };
 
   editownerprofile = (requestBody) => {
-    return this.api.post("/auth/editownerprofile", requestBody);
+    //return this.api.post("/auth/editownerprofile", requestBody);
+    return axios.post("/auth/editownerprofile", requestBody);
   };
 
   ownerlogin = (requestBody) => {

@@ -1,10 +1,11 @@
 .no-spinner::-webkit-inner-spin-button,
 .no-spinner::-webkit-outer-spin-button {
+  /* For webkit-based browsers (e.g., Chrome, Safari) */
   -webkit-appearance: none;
+  /* For Firefox */
+  -moz-appearance: none;
+  /* Standard property for compatibility */
+  appearance: none;
   margin: 0;
 }
 
-.no-spinner {
-  /* For Firefox */
-  -moz-appearance: textfield;
-}

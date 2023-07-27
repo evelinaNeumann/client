@@ -65,9 +65,7 @@
     justify-content: space-between;
   }
   
-  .carousel-button {
-    /* Add styles for the buttons, e.g., background, padding, etc. */
-  }
+ 
   
   .carousel-button.next {
     margin-left: 10px;

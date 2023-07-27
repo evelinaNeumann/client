@@ -3,7 +3,7 @@ import React, {  useState } from "react";
 import { useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
 import { Link } from "react-router-dom";
-import io from "socket.io-client";
+//import io from "socket.io-client";
 import catIcon from "../../images/cat-profile.jpg";
 import bgImg from "../../images/bg-landing-2.jpg";
 
@@ -58,7 +58,7 @@ console.log(user);
         </div>
 
       <div className="flex flex-col items-center pb-10">
-          <img className="w-24 h-24 mb-3 rounded-full shadow-lg" src={catIcon} alt="Profile picture"/>
+          <img className="w-24 h-24 mb-3 rounded-full shadow-lg" src={catIcon} alt={user.name || "Profile picture"}/>
 
           {user.name &&(
             <>
