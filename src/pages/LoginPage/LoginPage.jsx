@@ -2,7 +2,8 @@ import "./LoginPage.css";
 import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/auth.context";
-import authService from "../../services/auth.service";
+import axios from "axios";
+//import authService from "../../services/auth.service";
 import LoginImg from "../../images/iStock-1324099927.webp"
 
 function LoginPage() {
@@ -22,13 +23,17 @@ function LoginPage() {
     const requestBody = { email, password };
 
     // Send a request to the server using axios
-    /* 
-    axios.post(`${process.env.REACT_APP_SERVER_URL}/auth/login`)
-      .then((response) => {})
-    */
+    
+    axios.post(`https://petapp.fly.dev/auth/login`, requestBody)
+      .then((response) => {
+        storeToken(response.data.authToken);
+        authenticateUser();
+        navigate("/home");
+      })
+  
 
     // Or using a service
-    authService
+    /*authService
       .login(requestBody)
       .then((response) => {
         // If the POST request is successful store the authentication token,
@@ -38,6 +43,7 @@ function LoginPage() {
         authenticateUser();
         navigate("/home");
       })
+      */
       .catch((error) => {
         // If the request resolves with an error, set the error message in the state
         const errorDescription = error.response.data.message;

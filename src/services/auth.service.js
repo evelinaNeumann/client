@@ -3,7 +3,8 @@ import axios from "axios";
 class AuthService {
   constructor() {
     this.api = axios.create({
-      baseURL: process.env.REACT_APP_SERVER_URL || "http://localhost:5005",
+      //baseURL: process.env.REACT_APP_SERVER_URL || "http://localhost:5005",
+      baseURL: process.env.REACT_APP_SERVER_URL || "https://petapp.fly.dev",
     });
 
     // Automatically set JWT token on the request headers for every request
@@ -20,19 +21,20 @@ class AuthService {
   }
 
   login = (requestBody) => {
-    return this.api.post("/auth/login", requestBody);
+    //return this.api.post("/auth/login", requestBody);
     // same as
-    // return axios.post("http://localhost:5005/auth/login");
+     return axios.post("https://petapp.fly.dev/auth/login", requestBody);
   };
 
   signup = (requestBody) => {
-    return this.api.post("/auth/signup", requestBody);
+    //return this.api.post("/auth/signup", requestBody);
     // same as
-    // return axios.post("http://localhost:5005/auth/singup");
+    return axios.post("https://petapp.fly.dev/auth/signup", requestBody);
   };
 
   ownersignup = (requestBody) => {
-    return this.api.post("/auth/ownersignup", requestBody);
+    //return this.api.post("/auth/ownersignup", requestBody);
+    return axios.post("https://petapp.fly.dev/auth/ownersignup", requestBody);
   };
 
   editprofile = (requestBody) => {
@@ -44,13 +46,14 @@ class AuthService {
   };
 
   ownerlogin = (requestBody) => {
-    return this.api.post("/auth/ownerlogin", requestBody);
+    //return this.api.post("/auth/ownerlogin", requestBody);
+    return axios.post("https://petapp.fly.dev/auth/ownerlogin", requestBody);
   };
 
   verify = () => {
-    return this.api.get("/auth/verify");
+    //return this.api.get("/auth/verify");
     // same as
-    // return axios.post("http://localhost:5005/auth/verify");
+     return axios.get("https://petapp.fly.dev/auth/verify");
   };
 }
 

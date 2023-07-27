@@ -25,8 +25,8 @@ const CheckoutForm = () => {
         console.log(error.message);
       } else {
         const { id } = paymentMethod;
-  
-        const response = await axios.post('http://localhost:5005/api/payment', {
+        //const response = await axios.post('http://localhost:5005/api/payment', {
+        const response = await axios.post('https://petapp.fly.dev/api/payment', {
           id,
           // amount: totalPrice * 100,
           // client_secret: clientSecret,
@@ -50,5 +50,6 @@ const CheckoutForm = () => {
     </form>
   );
 };
+
 
 export default CheckoutForm;
