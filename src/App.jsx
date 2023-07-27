@@ -19,12 +19,19 @@ import ProductDetailsPage from "./pages/ProductDetailsPage/ProductDetailsPage";
 import CartPage from "./pages/CartPage/CartPage";
 import CartContext from "./components/cartContext";
 import OwnerHomepage from "./pages/OwnerHomepage/OwnerHomepage";
-import OwnerDashboard from "./pages/OwnerDashboard/OwnerDashboard";
+
+import EditProfile from "./pages/EditProfile/EditProfile";
+import OwnerProfilePage from "./pages/OwnerProfilePage/OwnerProfilePage";
+import LiveChat from "../src/pages/LiveChat/LiveChatPage"
+
+
+//import OwnerDashboard from "./pages/OwnerDashboard/OwnerDashboard";
+
 
 import Navbar from "./components/Navbar/Navbar";
 import IsPrivate from "./components/IsPrivate/IsPrivate";
 import IsAnon from "./components/IsAnon/IsAnon";
-import LiveChat from "./components/LiveChat/LiveChat";
+
 
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
@@ -92,6 +99,25 @@ function App() {
                   </IsPrivate>
                 }
               />
+              <Route
+                path="/livechat"
+                element={
+                  <IsPrivate>
+                    <LiveChat />
+                  </IsPrivate>
+                }
+              />
+              <Route
+                path="/editprofile"
+                element={
+                  <IsPrivate>
+                    <EditProfile />
+                  </IsPrivate>
+                }
+              />
+            <Route path="/owner/:ownerId" element={
+                    <OwnerProfilePage />
+                } />
 
               <Route
                 path="/signup"

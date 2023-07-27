@@ -37,6 +37,14 @@ class AuthService {
     return axios.post("https://petapp.fly.dev/auth/ownersignup", requestBody);
   };
 
+  editprofile = (requestBody) => {
+    return this.api.post("/auth/editprofile", requestBody);
+  };
+
+  editownerprofile = (requestBody) => {
+    return this.api.post("/auth/editownerprofile", requestBody);
+  };
+
   ownerlogin = (requestBody) => {
     //return this.api.post("/auth/ownerlogin", requestBody);
     return axios.post("https://petapp.fly.dev/auth/ownerlogin", requestBody);
