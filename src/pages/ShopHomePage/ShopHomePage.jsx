@@ -11,6 +11,8 @@ function ShopHomePage() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
+
+
         const res = await fetch("https://petapp.fly.dev/api/shop_products");
         const data = await res.json();
         console.log("Fetched products:", data);

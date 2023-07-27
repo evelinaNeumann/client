@@ -1,9 +1,12 @@
+
 //commented out lines were commented out in purpose of deployment
 //import React, { useEffect, useState } from "react";
+
 import React, { useState } from "react";
 import { useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
 import io from "socket.io-client";
+
 //const socket = io.connect("http://localhost:5005");
 const socket = io.connect("https://petapp.fly.dev");
 

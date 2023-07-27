@@ -1,23 +1,11 @@
 import React, { useEffect, useContext, useState } from "react";
-
-  
-
 import CartContext from "../../components/cartContext";
-
 import "./CartPage.css";
 import PaymentFormModal from "../../components/PaymentFormModal/PaymentFormModal";
 
-
-
-
 function CartPage() {
   const { cartItems, setCartItems } = useContext(CartContext);
-  
   const [showPaymentForm, setShowPaymentForm] = useState(false);
-
-  
-
-  
 
   useEffect(() => {
     const fetchCartItems = async () => {
@@ -79,6 +67,7 @@ function CartPage() {
     (total, item) => total + item.price * item.quantity,
     0
   );
+
   const handlePayNowClicked = () => {
     setShowPaymentForm(true);
   };
@@ -86,8 +75,6 @@ function CartPage() {
   const handlePaymentFormClose = () => {
     setShowPaymentForm(false);
   };
-
- 
 
   return (
     <div className="cart-page ui-serif-font">
@@ -126,11 +113,8 @@ function CartPage() {
                   onClick={() => handleRemoveFromCart(item.productId)}
                 >
                   Remove from Cart
-                  
                 </button>
-                
               </div>
-              
             </div>
           ))}
           <p className="total-price">Total Price: ${totalPrice}</p>
