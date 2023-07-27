@@ -20,12 +20,13 @@ import CartContext from "./components/cartContext";
 import OwnerHomepage from "./pages/OwnerHomepage/OwnerHomepage";
 import EditProfile from "./pages/EditProfile/EditProfile";
 import OwnerProfilePage from "./pages/OwnerProfilePage/OwnerProfilePage";
+import LiveChat from "../src/pages/LiveChat/LiveChatPage"
 
 
 import Navbar from "./components/Navbar/Navbar";
 import IsPrivate from "./components/IsPrivate/IsPrivate";
 import IsAnon from "./components/IsAnon/IsAnon";
-import LiveChat from "./components/LiveChat/LiveChat";
+
 
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
@@ -83,6 +84,14 @@ function App() {
                 element={
                   <IsPrivate>
                     <ProfilePage />
+                  </IsPrivate>
+                }
+              />
+              <Route
+                path="/livechat"
+                element={
+                  <IsPrivate>
+                    <LiveChat />
                   </IsPrivate>
                 }
               />

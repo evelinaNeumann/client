@@ -8,6 +8,13 @@ export default function Navbar() {
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
   const [isNavOpen, setIsNavOpen] = useState(false); // initiate isNavOpen state with false
 
+  const handleChatClick = () => {
+    // Implement the logic for opening the live chat window
+    // e.g., using a chat library or triggering a chat modal
+    console.log("Open live chat");
+  };
+
+
   return (
     <div className="flex items-center justify-between border-b border-lime-800 p-8">
       <a href="/">
@@ -103,6 +110,11 @@ export default function Navbar() {
              <li className="mx-4 my-6 md:my-0">
                <Link to="/profile" className="text-xl  hover:text-white duration-500 hover:bg-lime-800  hover:p-2 hover:rounded-lg">
                  Profile
+               </Link>
+             </li>
+             <li className="mx-4 my-6 md:my-0">
+               <Link to="/livechat" className="text-xl  hover:text-white duration-500 hover:bg-lime-800  hover:p-2 hover:rounded-lg">
+                 Message wall
                </Link>
              </li>
              <li className="mx-4 my-6 md:my-0">

@@ -5,20 +5,10 @@ import { Link } from "react-router-dom";
 import io from "socket.io-client";
 import catIcon from "../../images/cat-profile.jpg";
 import bgImg from "../../images/bg-landing-2.jpg";
-const socket = io.connect("http://localhost:5005");
+
 
 const ProfilePage = () => {
     const { user} = useContext(AuthContext);
-    const [username, setUsername] = useState("");
-  const [room, setRoom] = useState("");
-  const [showChat, setShowChat] = useState(false);
-
-  const joinRoom = () => {
-    console.log(username, room);
-    if (username !== "" && room !== "") socket.emit("join_room", room);
-    setShowChat(true);
-  };
-
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -87,20 +77,8 @@ console.log(user);
             </>
           )}
 
-          <div className="flex mt-4 space-x-3 md:mt-6">
-              <a href="#" className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-lime-700 rounded-lg hover:bg-lime-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Chat with me</a>
-          </div>
       </div>
   </div>
-      </div>
-
-      <div className="joinChatContainer">
-                <h3 className="joinChatHeader">Join a chat</h3>
-                <input type="text" value={user.name} onChange={(event) => {setUsername(event.target.value);}} className="joinChatInput"/>
-                <input type="text" value={user._id} onChange={(event) => {setRoom(event.target.value)}} className="joinChatInput" />
-                <button onClick={joinRoom} className="joinChatButton">
-                  Join a room
-                </button>
       </div>
 
     </div>
