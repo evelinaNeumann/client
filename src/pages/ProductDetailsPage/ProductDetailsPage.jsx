@@ -71,14 +71,10 @@ function ProductDetailsPage() {
   return (
     <div>
       <ShopHeader title="Shop Page" />
-      <h2>Product Details</h2>
+      <h2>Welcome to product details</h2>
       <div className="product-details-container">
         <div className="product-image-container">
-          <img
-            src={product.image}
-            alt={product.name}
-            style={{ width: "500px" }}
-          />
+          <img src={product.image} alt={product.name} />
         </div>
         <div className="product-info-container">
           <div className="product-info">
@@ -99,7 +95,6 @@ function ProductDetailsPage() {
                 Go to Cart
               </Link>
             </div>
-           
           </div>
         </div>
       </div>
