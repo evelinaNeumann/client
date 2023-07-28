@@ -82,7 +82,7 @@ const EditProfile = () => {
   return (
     <div style={{ backgroundImage: `url(${bgImg})`, objectFit: "scale-down" }}>
       <div className="flex justify-center py-12 px-6">
-        <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow ">
           {user.name && (
             <form
             onSubmit={handleEditProfileSubmit}
@@ -99,16 +99,16 @@ const EditProfile = () => {
               value={name}
               placeholder="Full Name"
               name="name"
-              className="mb-1 text-2xl font-medium text-gray-900 dark:text-white border border-gray-400 py-1 px-2 m-1"
+              className="mb-1 text-2xl font-medium text-gray-900  border border-gray-400 py-1 px-2 m-1"
             />
             <input
               onChange={(e) => setEmail(e.target.value)}
               name="email"
               value={email}
               placeholder="Email Address"
-              className="text-sm text-gray-500 dark:text-gray-400 py-3 border border-gray-400 px-2 m-1"
+              className="text-sm text-gray-500  py-3 border border-gray-400 px-2 m-1"
             />
-            <span className="text-sm text-gray-500 dark:text-gray-400 py-3">
+            <span className="text-sm text-gray-500  py-3">
               I'm currently looking for
               <select
                 onChange={(e) => setPreference(e.target.value)}
@@ -126,7 +126,7 @@ const EditProfile = () => {
             <div className="flex mt-4 space-x-3 md:mt-6">
               <button
                 type="submit"
-                className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-lime-700 rounded-lg hover:bg-lime-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-lime-700 rounded-lg hover:bg-lime-800 focus:ring-4 focus:outline-none focus:ring-blue-300 "
               >
                 Change my profile
               </button>
@@ -150,14 +150,14 @@ const EditProfile = () => {
               value={ownerName}
               placeholder="Full Name"
               name="name"
-              className="mb-1 text-2xl font-medium text-gray-900 dark:text-white border border-gray-400 py-1 px-2 m-1"
+              className="mb-1 text-2xl font-medium text-gray-900  border border-gray-400 py-1 px-2 m-1"
             />
             <input
               onChange={(e) => setOwnerEmail(e.target.value)}
               name="email"
               value={ownerEmail}
               placeholder="Email Address"
-              className="text-sm text-gray-500 dark:text-gray-400 py-3 border border-gray-400 px-2 m-1"
+              className="text-sm text-gray-500  py-3 border border-gray-400 px-2 m-1"
             />
 
             <input
@@ -165,7 +165,7 @@ const EditProfile = () => {
               name="ownerPhone"
               value={ownerPhone}
               placeholder="Phone number"
-              className="text-sm text-gray-500 dark:text-gray-400 py-3 border border-gray-400 px-2 m-1"
+              className="text-sm text-gray-500  py-3 border border-gray-400 px-2 m-1"
             />
 
             <input
@@ -173,7 +173,7 @@ const EditProfile = () => {
               name="city"
               value={city}
               placeholder="City"
-              className="text-sm text-gray-500 dark:text-gray-400 py-3 border border-gray-400 px-2 m-1"
+              className="text-sm text-gray-500  py-3 border border-gray-400 px-2 m-1"
             />
 
             <input
@@ -181,7 +181,7 @@ const EditProfile = () => {
               name="zip"
               value={zip}
               placeholder="Zip"
-              className="text-sm text-gray-500 dark:text-gray-400 py-3 border border-gray-400 px-2 m-1"
+              className="text-sm text-gray-500  py-3 border border-gray-400 px-2 m-1"
             />
 
             <input
@@ -189,13 +189,13 @@ const EditProfile = () => {
               name="country"
               value={country}
               placeholder="Country"
-              className="text-sm text-gray-500 dark:text-gray-400 py-3 border border-gray-400 px-2 m-1"
+              className="text-sm text-gray-500  py-3 border border-gray-400 px-2 m-1"
             />
 
             <div className="flex mt-4 space-x-3 md:mt-6">
               <button
                 type="submit"
-                className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-lime-700 rounded-lg hover:bg-lime-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-lime-700 rounded-lg hover:bg-lime-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
               >
                 Change my profile
               </button>

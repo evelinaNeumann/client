@@ -3,7 +3,7 @@ import axios from "axios";
 class AuthService {
   constructor() {
     this.api = axios.create({
-      //baseURL: process.env.REACT_APP_SERVER_URL || "http://localhost:5005",
+     // baseURL: process.env.REACT_APP_SERVER_URL || "http://localhost:5005",
       baseURL: process.env.REACT_APP_SERVER_URL || "https://petapp.fly.dev",
     });
 
@@ -39,12 +39,12 @@ class AuthService {
 
   editprofile = (requestBody) => {
    // return this.api.post("/auth/editprofile", requestBody);
-   return axios.post("/auth/editprofile", requestBody);
+   return axios.post("https://petapp.fly.dev/auth/editprofile", requestBody);
   };
 
   editownerprofile = (requestBody) => {
     //return this.api.post("/auth/editownerprofile", requestBody);
-    return axios.post("/auth/editownerprofile", requestBody);
+    return axios.post("https://petapp.fly.dev/auth/editownerprofile", requestBody);
   };
 
   ownerlogin = (requestBody) => {
