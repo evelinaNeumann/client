@@ -3,6 +3,7 @@ import React, { useContext, useState } from "react";
 import axios from "axios";
 import { Image } from "cloudinary-react";
 import { AuthContext } from "../../context/auth.context";
+import dogPhoto from "../../images/cutest-dog-breeds-jpg.jpg";
 
 function PetForm({ onSubmit }) {
   const [imageSelected, setSelectedImage] = useState("");
@@ -67,14 +68,30 @@ function PetForm({ onSubmit }) {
   // };
 
   return (
-    <div className="px-8 py-4">
+    <div
+      className="px-8 py-4"
+      // className="px-8 py-4 flex flex-col items-center"
+      style={{
+        backgroundImage: `url(${dogPhoto})`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        //backgroundColor: "rgba(255, 255, 255, 0.5)", // Set the opacity (alpha) value here
+        backdropFilter: "saturate(25%)",
+      }}
+    >
       <input
         type="file"
         onChange={(event) => {
           setSelectedImage(event.target.files[0]);
         }}
       />
-      <button onClick={uploadImage}>Upload Image</button>
+      <button
+        onClick={uploadImage}
+        className="transition ease-in-out delay-150 bg-gray-500 hover:bg-gray-700 duration-300 px-4 py-2 rounded-md text-white"
+      >
+        Upload Image
+      </button>
       <br />
       <br />
       {publicId && (
@@ -147,7 +164,10 @@ function PetForm({ onSubmit }) {
         />
       </div>
       <br />
-      <button onClick={handleSubmit} className="bg-orange-500 py-4">
+      <button
+        onClick={handleSubmit}
+        className="transition ease-in-out delay-150 bg-orange-300 hover:-translate-y-1 hover:scale-110 hover:bg-orange-400 duration-300 px-4 py-2 rounded-md text-white"
+      >
         Submit
       </button>
     </div>
