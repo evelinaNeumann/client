@@ -177,7 +177,7 @@ function OwnerHomepage() {
 
     // Make the API call to add the new pet
     axios
-      .post("http://localhost:5005/pet/petprofile", formData, config)
+      .post("https://petapp.fly.dev/pet/petprofile", formData, config)
       .then((response) => {
         const data = response.data;
         console.log(data);
