@@ -8,7 +8,7 @@ import bgImg from "../../images/bg-landing-2.jpg";
 
 import LiveChat from "../../components/LiveChat/LiveChat";
 import io from "socket.io-client";
-const socket = io.connect("http://localhost:5005");
+const socket = io.connect("https://petapp.fly.dev");
 
 function OwnerProfilePage() {
   const { user} = useContext(AuthContext);
@@ -21,7 +21,6 @@ function OwnerProfilePage() {
 
   const fetchOwnerPets = async () => {
     try {
-
       const res = await fetch(`https://petapp.fly.dev/api/pets/${ownerId}`);
       const data = await res.json();
       setOwnerPets(data);
@@ -32,7 +31,7 @@ function OwnerProfilePage() {
 
   useEffect(() => {
     fetchOwnerPets();
-  }, );
+  });
 
   const joinRoom = () => {
     console.log(room);
@@ -43,7 +42,7 @@ function OwnerProfilePage() {
   useEffect(() => {
     const fetchOwnerData = async () => {
       try {
-        const res = await fetch(`https://petapp.fly.dev"/api/owner/${ownerId}`);
+        const res = await fetch(`https://petapp.fly.dev/api/owner/${ownerId}`);
         const data = await res.json();
         setOwner(data);
       } catch (error) {
