@@ -19,6 +19,7 @@ import ProductDetailsPage from "./pages/ProductDetailsPage/ProductDetailsPage";
 import CartPage from "./pages/CartPage/CartPage";
 import CartContext from "./components/cartContext";
 import OwnerHomepage from "./pages/OwnerHomepage/OwnerHomepage";
+import OwnerDashboard from "./pages/OwnerDashboard/OwnerDashboard";
 
 import EditProfile from "./pages/EditProfile/EditProfile";
 import OwnerProfilePage from "./pages/OwnerProfilePage/OwnerProfilePage";
@@ -118,6 +119,10 @@ function App() {
             <Route path="/owner/:ownerId" element={
                     <OwnerProfilePage />
                 } />
+                <Route
+                path="/ownerdashboard/:ownerId"
+                element={<OwnerDashboard />}
+              />
 
               <Route
                 path="/signup"
