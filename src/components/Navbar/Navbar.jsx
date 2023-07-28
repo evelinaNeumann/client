@@ -8,12 +8,6 @@ export default function Navbar() {
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
   const [isNavOpen, setIsNavOpen] = useState(false); // initiate isNavOpen state with false
 
- /* const handleChatClick = () => {
-    // Implement the logic for opening the live chat window
-    // e.g., using a chat library or triggering a chat modal
-    console.log("Open live chat");
-  };*/
-
 
   return (
     <div className="flex items-center justify-between border-b border-lime-800 p-8">
@@ -52,9 +46,16 @@ export default function Navbar() {
 
             {isLoggedIn ? (
             <ul className="MENU-LINK-MOBILE-OPEN flex flex-col items-center justify-between min-h-[250px]">
-              <li className="border-b border-lime-800 my-8 uppercase">
-                <Link to="/home" className="text-xl duration-500">Home</Link>
-              </li>
+              {user.name ? (
+                <li className="border-b border-lime-800 my-8 uppercase">
+                  <Link to="/home" className="text-xl duration-500">Home</Link>
+                </li>
+              ) : (
+                <li className="border-b border-lime-800 my-8 uppercase">
+                  <Link to="/ownerhome" className="text-xl duration-500">Home</Link>
+                </li>
+              )}
+
               <li className="border-b border-lime-800 my-8 uppercase">
                 <Link to="/guidelines" className="text-xl duration-500">Guidelines</Link>
               </li>
@@ -72,7 +73,7 @@ export default function Navbar() {
             </ul>) : (
               <ul className="MENU-LINK-MOBILE-OPEN flex flex-col items-center justify-between min-h-[250px]">
               <li className="border-b border-lime-800 my-8 uppercase">
-                <Link to="/home" className="text-xl duration-500">Home</Link>
+                <Link to="/" className="text-xl duration-500">Home</Link>
               </li>
               <li className="border-b border-lime-800 my-8 uppercase">
                 <Link to="/guidelines" className="text-xl duration-500">Guidelines</Link>
@@ -90,11 +91,15 @@ export default function Navbar() {
 
         {isLoggedIn ? (
         <ul className="DESKTOP-MENU hidden space-x-8 lg:flex">
-        <li className="mx-4 my-6 md:my-0">
-               <Link to="/home" className="text-xl hover:text-white duration-500 hover:bg-lime-800  hover:p-2 hover:rounded-lg">
-                 Home
-               </Link>
-             </li>
+          {user.name ? (
+            <li className="mx-4 my-6 md:my-0">
+              <Link to="/home" className="text-xl hover:text-white duration-500 hover:bg-lime-800  hover:p-2 hover:rounded-lg">Home</Link>
+            </li>
+          ) : (
+            <li className="mx-4 my-6 md:my-0">
+              <Link to="/ownerhome" className="text-xl hover:text-white duration-500 hover:bg-lime-800  hover:p-2 hover:rounded-lg">Home</Link>
+            </li>
+          )}
 
              <li className="mx-4 my-6 md:my-0">
               <Link to="/guidelines" className="text-xl hover:text-white duration-500 hover:bg-lime-800  hover:p-2 hover:rounded-lg">
@@ -127,7 +132,7 @@ export default function Navbar() {
         ) : (
           <ul className="DESKTOP-MENU hidden space-x-8 lg:flex">
         <li className="mx-4 my-6 md:my-0">
-               <Link to="/home" className="text-xl hover:text-white duration-500 hover:bg-lime-800  hover:p-2 hover:rounded-lg">
+               <Link to="/" className="text-xl hover:text-white duration-500 hover:bg-lime-800  hover:p-2 hover:rounded-lg">
                  Home
                </Link>
              </li>
