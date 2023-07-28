@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { FaUserCircle } from "react-icons/fa";
-import { MdOutlineShoppingCart } from "react-icons/md";
+//import { FaUserCircle } from "react-icons/fa";
+//import { MdOutlineShoppingCart } from "react-icons/md";
+import ShopHeader from "../../components/shopHeader/shopHeader";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/scss/alice-carousel.scss";
 import "./ShopHomePage.css";
@@ -74,30 +75,30 @@ function ShopHomePage() {
 
   return (
     <div className="shop-home-page">
+      <ShopHeader title="Shop Page" />
       <h1 className="shadow h-20 flex justify-between items-center">
-        <div className="flex items-center">Shop Home page</div>
-        <div className="flex items-center">
-          <FaUserCircle size={50} />
-          <MdOutlineShoppingCart size={50} style={{ marginRight: "16px" }} />
-        </div>
+        
       </h1>
       {Object.keys(groupedProducts).length > 0 ? (
         Object.entries(groupedProducts).map(([category, products]) => (
-          <div key={category} className={`${category.toLowerCase()} category`}>
-            <h2>{category}</h2>
+          <div key={category} className={`category ${category.toLowerCase()}`}>
+            <h2 className={`category-name-${category.toLowerCase()}`}>
+              {category}
+            </h2>
             <AliceCarousel
               mouseTracking
               items={mapImagesToSlides(
                 products.map((product) => product.image),
-                products,
-                category
+                products
               )}
               stagePadding={{ paddingLeft: 50, paddingRight: 50 }}
               onSlideChanged={handleSlideChange}
               buttonsDisabled={true} // Disable default buttons
               renderPrevButton={({ isDisabled }) => (
                 <button
-                  className={`custom-carousel-button prev-button `}
+                  className={`custom-carousel-button prev-button ${
+                    category.toLowerCase()
+                  }`}
                   disabled={isDisabled}
                 >
                   Prev
@@ -105,7 +106,9 @@ function ShopHomePage() {
               )}
               renderNextButton={({ isDisabled }) => (
                 <button
-                  className={`custom-carousel-button next-button `}
+                  className={`custom-carousel-button next-button ${
+                    category.toLowerCase()
+                  }`}
                   disabled={isDisabled}
                 >
                   Next
@@ -116,10 +119,9 @@ function ShopHomePage() {
         ))
       ) : (
         <p>No products available.</p>
-      
-        )}
-        </div>
-      );
-    }
-    
-    export default ShopHomePage;
+      )}
+    </div>
+  );
+}
+
+export default ShopHomePage;
