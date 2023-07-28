@@ -1,39 +1,61 @@
-import React from "react";
-import { useLocation } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom"; // Uncomment this line to import useParams
 import { Image } from "cloudinary-react";
+import axios from "axios";
+//import { useContext } from "react";
+//import { AuthContext } from "../../context/auth.context";
 
 function OwnerDashboard() {
-  const location = useLocation();
-  const formData = location.state;
-  console.log(location); // Access the form data from location state
+  const { ownerId } = useParams();
+  const [formData, setFormData] = useState(null);
+ // const [ownerPets, setOwnerPets] = useState([]);
+  //const { user } = useContext(AuthContext);
 
-  const handleEditClick = () => {
-    // Assuming you have a route for the edit form with the path "/editpet/:id"
-    // Replace 'formData.id' with the actual pet ID you want to edit
-    window.location.href = `/editpet/${formData._id}`;
-    console.log(formData);
-  };
+  useEffect(() => {
+    const fetchPetDetails = async () => {
+      try {
+        console.log("Fetching pet details from the server...");
+        const response = await axios.get(`http://petapp.fly.dev/pet/pets/${ownerId}`);
+        console.log("Server response:", response.data);
+        const petData = response.data; // Use response.data directly to get pet data
+        setFormData(petData);
+      } catch (error) {
+        console.error("Error fetching pet details:", error);
+      }
+    };
+
+    if (ownerId) {
+      fetchPetDetails();
+    }
+  }, [ownerId]);
 
   return (
     <div>
       <h1>Your Pet</h1>
-      <p>Name: {formData.name}</p>
-      <p>Category: {formData.category}</p>
-      <p>Type: {formData.type}</p>
-      <p>Age: {formData.age}</p>
-      <p>Temper: {formData.temper}</p>
-      <p>Special Needs: {formData.specialNeeds}</p>
-      {formData.image && (
-        <div>
-          <h2>Image:</h2>
-          <Image
-            style={{ width: 200 }}
-            cloudName="dnstseshn"
-            publicId={formData.image}
-          />
-        </div>
+      {formData ? (
+        formData.map((d) => (
+          <>
+            <p>Name: {d.name}</p>
+            <p>Category: {d.category}</p>
+            <p>Type: {d.type}</p>
+            <p>Age: {d.age}</p>
+            <p>Temper: {d.temper}</p>
+            <p>Special Needs: {d.special_needs ? "Yes" : "No"}</p>
+            {d.image && (
+              <div>
+                <h2>Image:</h2>
+                <Image
+                  style={{ width: 200 }}
+                  cloudName="dnstseshn"
+                  publicId={d.image}
+                />
+              </div>
+            )}
+          </>
+        ))
+      ) : (
+        <p>Loading...</p>
       )}
-      <button onClick={handleEditClick}>Edit</button>
     </div>
   );
 }
