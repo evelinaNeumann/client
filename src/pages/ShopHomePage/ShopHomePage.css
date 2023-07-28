@@ -1,25 +1,32 @@
 .food {
-  background: linear-gradient(to bottom, rgb(63, 98, 18), rgb(255, 255, 255));
+  background-image: url("../../images/bg-landing-2-bg-white.png");
+  margin-bottom: 18px;
 }
 
 .toys {
-  background: linear-gradient(to bottom, rgb(114 , 155, 59), rgb(255, 255, 255));
+  background-image: url("../../images/bg-landing-2-bg-white.png");
+  margin-bottom: 18px;
+  
 }
 
 .housing {
-  background: linear-gradient(to bottom, rgb(252, 204, 162), rgb(255, 255, 255));
+  background-image: url("../../images/bg-landing-2-bg-white.png");
+  margin-bottom: 18px;
 }
 
 .accessories {
-  background: linear-gradient(to bottom, rgb(232, 158, 94), rgb(255, 255, 255));
+  background-image: url("../../images/bg-landing-2-bg-white.png");
+  margin-bottom: 18px;
 }
 
 .grooming {
-  background: linear-gradient(to bottom, rgb(226, 119, 25), rgb(255, 255, 255));
+  background-image: url("../../images/bg-landing-2-bg-white.png");
+  margin-bottom: 18px;
 }
 
 .beds {
-  background: linear-gradient(to bottom, rgb(164, 195, 123), rgb(255, 255, 255));
+  background-image: url("../../images/bg-landing-2-bg-white.png");
+  margin-bottom: 18px;
 }
 
 .carousel-image {
@@ -36,7 +43,7 @@
   background-color: white;
   display: inline-block;
   padding: 8px;
-  border: 1px solid black;
+  
   border-radius: 20px; 
   position: relative;
   overflow: hidden;
@@ -79,6 +86,92 @@
 }
 .custom-carousel-button {
   display: block;
+  width: 75px;
+  color: white;
+
+  margin: 0 auto;
+  text-align: center;
+  padding: 8px;
+  border-radius: 10px;
+  /* Add additional styling as needed */
+}
+
+
+.food .custom-carousel-button {
+  background-color: rgb(63, 98, 18);
+}
+
+.toys .custom-carousel-button {
+  background-color: rgb(114 , 155, 59);
+}
+.beds .custom-carousel-button{
+  background-color: rgb(164, 195, 123)
+}
+
+.housing .custom-carousel-button {
+  background-color: rgb(252, 204, 162);
+}
+
+.accessories .custom-carousel-button {
+  background-color: rgb(232, 158, 94);
+}
+
+.grooming .custom-carousel-button {
+  background-color: rgb(226, 119, 25);
+}
+
+
+
+
+/* Apply common styles to all category names */
+.category h2 {
+  font-size: 34px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  
+}
+
+/* Customize styles for specific category names */
+.category-name-food {
+  color: rgb(63, 98, 18);
+  text-shadow: 1px 1px 1px rgb(105, 105, 105); 
+
+}
+
+.category-name-toys {
+  color:rgb(114 , 155, 59); 
+  text-shadow: 1px 1px 1px rgb(105, 105, 105); 
+}
+.category-name-beds {
+  color:rgb(114 , 155, 59); 
+  text-shadow: 1px 1px 1px rgb(105, 105, 105); 
+}
+.category-name-housing {
+  color: rgb(252, 204, 162); 
+  text-shadow: 1px 1px 1px rgb(105, 105, 105); 
+}
+.category-name-accessories {
+  color: rgb(232, 158, 94); 
+  text-shadow: 1px 1px 1px rgb(105, 105, 105); 
+}
+.category-name-grooming {
+  color:rgb(226, 119, 25); 
+  text-shadow: 1px 1px 1px rgb(105, 105, 105); 
+}
+
+
+
+.h-20 {
+  line-height: 20px; /* Set the line-height to match the height of the <h1> element */
+}
+
+
+
+
+/* ... Rest of the CSS ... */
+
+.custom-carousel-button {
+  display: block;
   margin: 0 auto;
   text-align: center;
   padding: 8px;
@@ -86,7 +179,6 @@
   border-radius: 10px;
   /* Add additional styling as needed */
 }
-
 
 .food .custom-carousel-button {
   background-color: rgb(63, 98, 18);
@@ -112,8 +204,4 @@
   background-color: rgb(164, 195, 123);
 }
 
-
-
-
-
-
+/* ... Rest of the CSS ... */
