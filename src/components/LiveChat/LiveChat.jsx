@@ -31,9 +31,10 @@ function LiveChat({ socket, username, room }) {
   }, [socket]);
 
   return (
+    <div className="grid grid-col py-8 items-center justify-center">
     <div className="chat-window">
       <div className="chat-header">
-        <p>Live Chat</p>
+        <p>Messenger</p>
       </div>
 
       <div className="chat-body">
@@ -78,6 +79,7 @@ function LiveChat({ socket, username, room }) {
         />
         <button onClick={sendMessage}>&#9658;</button>
       </div>
+    </div>
     </div>
   );
 }

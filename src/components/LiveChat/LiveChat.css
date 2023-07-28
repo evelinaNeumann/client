@@ -38,10 +38,22 @@
   height: 420px;
 }
 
+@media (min-width: 1024px) {
+  .chat-window-lg {
+    width: 800px;
+  }
+}
+
+@media (min-width: 768px) {
+  .chat-window-md {
+    width: 500px;
+  }
+}
+
 .chat-window .chat-header {
   height: 45px;
   border-radius: 6px;
-  background: #263238;
+  background: #3f6212;
   position: relative;
   cursor: pointer;
 }
